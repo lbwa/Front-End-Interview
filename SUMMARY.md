@@ -24,6 +24,6 @@
 
 * [事件绑定 event](js-essentials/web-api-event.md)
 
-* [](js-essentials/.md)
+* [Ajax](js-essentials/web-api-ajax.md)
 
 * [](js-essentials/.md)
