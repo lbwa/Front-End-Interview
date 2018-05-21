@@ -41,7 +41,7 @@ xhr.send(null)
 
 客户端为因安全问题，会默认**阻止解析（并不阻止请求，这也是 CORS 的原理）** Ajax 请求的非同源（请求地址的协议、域名、端口任意一项与当前页面不同）资源。即浏览器并不会阻止 Ajax 跨域请求，阻止的是解析 Ajax 跨域请求返回的数据。
 
-![NO-CORS](No-CORS.png)
+![NO-CORS][No-CORS]
 
 上图中，请求地址是非同源地址，由 `response` 可看出客户端并未阻止跨域 Ajax 请求，但是浏览器在服务端返回数据后进行 `Access-Control-Allow-Origin` 验证时，发现当前源（http://localhost:8889）并没有跨域权限（没有在服务端的白名单中）中，故浏览器拒绝解析服务端返回给客户端的数据，此时的客户端是已经接受了跨域请求的数据了的，只是客户端拒绝解析。
 
@@ -49,9 +49,15 @@ xhr.send(null)
 
 正确在服务端配置 `CORS` 后的返回数据如下：
 
-![Set-CORS](Set-CORS.png)
+![Set-CORS][Set-CORS]
 
 ![Set-CORS1](Set-CORS1.png)
+
+[No-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/No-CORS.PNG
+
+[Set-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/Set-CORS.PNG
+
+[Set-CORS1]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/Set-CORS1.PNG
 
 由上图可看出，浏览器在跨域请求后，通过验证 `Access-Control-Allow-Origin` 得到允许当前域（http://localhost:8889）跨域请求目标服务器（https://api.github.com）。
 
@@ -104,4 +110,10 @@ window.callBack = function (data) {
 
 示例中，`JSONP` 将返回数据作为 `callBack` 的参数返回。并且此时执行 `callBack` 调用，那么数据得以解析。进而绕过浏览器同源策略。
 
-使用 `JSONP` 尤其要注意的是，一定要保证请求地址的数据的安全性。
+### JSONP 局限性
+
+- 只支持 `GET` 请求。
+
+- 因为是通过 `HTML` 标签的 `src` 属性来实现跨域的，那么无法验证请求数据的安全性，那么一定要保证请求域的安全性的情况下使用 `JSONP` 来实现跨域。
+
+- 必须另外添加计时器来判断请求是否超时。
