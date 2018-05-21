@@ -43,7 +43,7 @@ xhr.send(null)
 
 ![NO-CORS][No-CORS]
 
-上图中，请求地址是非同源地址，由 `response` 可看出客户端并未阻止跨域 Ajax 请求，但是浏览器在服务端返回数据后进行 `Access-Control-Allow-Origin` 验证时，发现当前源（http://localhost:8889）并没有跨域权限（没有在服务端的白名单中）中，故浏览器拒绝解析服务端返回给客户端的数据，此时的客户端是已经接受了跨域请求的数据了的，只是客户端拒绝解析。
+上图中，请求地址是非同源地址，由 `response` 可看出客户端并未阻止跨域 Ajax 请求，但是浏览器在服务端返回数据后进行 `Access-Control-Allow-Origin` 验证时，发现当前源（`http://localhost:8889`）并没有跨域权限（没有在服务端的白名单中）中，故浏览器拒绝解析服务端返回给客户端的数据，此时的客户端是已经接受了跨域请求的数据了的，只是客户端拒绝解析。
 
 浏览器默认执行**同源策略**。即只会解析与当前源对比**同协议，同域名，同端口**的请求地址返回的数据请求。
 
@@ -59,7 +59,7 @@ xhr.send(null)
 
 [Set-CORS1]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/Set-CORS1.PNG
 
-由上图可看出，浏览器在跨域请求后，通过验证 `Access-Control-Allow-Origin` 得到允许当前域（http://localhost:8889）跨域请求目标服务器（https://api.github.com）。
+由上图可看出，浏览器在跨域请求后，通过验证 `Access-Control-Allow-Origin` 得到允许当前域（`http://localhost:8889`）跨域请求目标服务器（`https://api.github.com`）。
 
 **重要**：一般情况下，浏览器并不会阻止跨域请求，但会阻止跨域请求后的数据解析。
 
