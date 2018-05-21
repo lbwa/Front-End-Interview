@@ -51,7 +51,7 @@ xhr.send(null)
 
 ![Set-CORS][Set-CORS]
 
-![Set-CORS1](Set-CORS1.png)
+![Set-CORS1][Set-CORS1]
 
 [No-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/No-CORS.PNG
 
