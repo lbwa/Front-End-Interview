@@ -1,6 +1,6 @@
-# Front-End Interview —— 回顾和强化 JavaScript 基础知识
+# Front-End Interview
 
-本存储库主要内容是梳理和强化自己在学习前端过程中的 JavaScript 基础知识，以为将来的面试做准备。
+本存储库主要内容是梳理和强化自己在前端学习历程的 JavaScript 基础知识，用于为将来的面试做准备。
 
 # 思考原则
 
