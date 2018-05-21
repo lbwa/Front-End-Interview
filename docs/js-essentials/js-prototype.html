@@ -1,0 +1,468 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>原型与原型链 prototype (chain) · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="js-hoisting.html" />
+    
+    
+    <link rel="prev" href="js-variable.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/lbwa" target="_blank" class="custom-link">My Github</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介 introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础语法和规则</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="js-variable.html">
+            
+                <a href="js-variable.html">
+            
+                    
+                    变量 variable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="js-prototype.html">
+            
+                <a href="js-prototype.html">
+            
+                    
+                    原型与原型链 prototype (chain)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="js-hoisting.html">
+            
+                <a href="js-hoisting.html">
+            
+                    
+                    变量提升 hoisting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="js-lexical-environments.html">
+            
+                <a href="js-lexical-environments.html">
+            
+                    
+                    作用域 lexical environments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="js-object-this.html">
+            
+                <a href="js-object-this.html">
+            
+                    
+                    函数执行上下文 this
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="js-event-loops.html">
+            
+                <a href="js-event-loops.html">
+            
+                    
+                    事件循环 event loops
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Web API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="web-api-document-object-model.html">
+            
+                <a href="web-api-document-object-model.html">
+            
+                    
+                    文档对象模型 DOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="web-api-broswer-object-model.html">
+            
+                <a href="web-api-broswer-object-model.html">
+            
+                    
+                    浏览器对象模型 BOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="web-api-event.html">
+            
+                <a href="web-api-event.html">
+            
+                    
+                    事件绑定 event
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="web-api-ajax/web-api-ajax.html">
+            
+                <a href="web-api-ajax/web-api-ajax.html">
+            
+                    
+                    Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="web-api-storage.html">
+            
+                <a href="web-api-storage.html">
+            
+                    
+                    客户端存储 storage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >原型与原型链 prototype (chain)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x539F;&#x578B;&#x548C;&#x539F;&#x578B;&#x94FE;">&#x539F;&#x578B;&#x548C;&#x539F;&#x578B;&#x94FE;</h1>
+<h2 id="&#x539F;&#x578B;">&#x539F;&#x578B;</h2>
+<p>&#x6240;&#x6709; <strong>&#x5BF9;&#x8C61;</strong> &#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x9690;&#x5F0F;&#x539F;&#x578B;&#xFF08;<code>__proto__</code> &#x5C5E;&#x6027;&#xFF09;&#xFF0C;&#x6240;&#x6709; <strong>&#x975E;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x7684;&#x51FD;&#x6570;</strong> &#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x663E;&#x5F0F;&#x539F;&#x578B;&#xFF08;<a href="https://tc39.github.io/ecma262/#sec-terms-and-definitions-prototype" target="_blank">prototype</a> (ES2019) &#x5C5E;&#x6027;&#xFF0C;&#x663E;&#x5F0F;&#x539F;&#x578B;&#x662F; <strong>&#x975E;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x7684;&#x51FD;&#x6570;&#x72EC;&#x6709;</strong>&#xFF0C;&#x5728;&#x521B;&#x5EFA;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x88AB;&#x521B;&#x5EFA;&#x3002;&#xFF09;&#x3002;&#x6240;&#x6709;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7684;&#x9690;&#x5F0F;&#x539F;&#x578B;&#x6307;&#x5411;&#x4ED6;&#x7684; <strong>&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;</strong> &#x663E;&#x5F0F;&#x539F;&#x578B;&#x3002;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x663E;&#x5F0F;&#x539F;&#x578B;&#x4F5C;&#x7528;&#x5728;&#x4E8E;&#x5B58;&#x50A8;&#x6240;&#x6709;&#x5F53;&#x524D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x53EF;&#x5171;&#x4EAB;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x5C5E;&#x6027;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {} <span class="hljs-comment">// const obj = new Object()</span>
+obj.__proto__ === <span class="hljs-built_in">Object</span>.prototype <span class="hljs-comment">// true</span>
+
+<span class="hljs-keyword">const</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{} <span class="hljs-comment">// const fn = new Function()</span>
+fn.__proto__ === <span class="hljs-built_in">Function</span>.prototype <span class="hljs-comment">// true</span>
+fn.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototype <span class="hljs-comment">// true</span>
+
+<span class="hljs-built_in">Object</span>.prototype.constructor === <span class="hljs-built_in">Object</span> <span class="hljs-comment">// true&#xFF0C;&#x6307;&#x5411;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x6240;&#x5728;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+<span class="hljs-built_in">Object</span>.prototype.__proto__ === <span class="hljs-literal">null</span> <span class="hljs-comment">// true&#xFF0C;&#x6307;&#x5411; Object.prototype &#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;</span>
+
+<span class="hljs-built_in">Function</span>.__proto__ === <span class="hljs-built_in">Function</span>.prototype <span class="hljs-comment">// true&#xFF0C;Function.__proto__ &#x6307;&#x5411;&#x81EA;&#x8EAB;&#x539F;&#x578B;&#x5BF9;&#x8C61;</span>
+</code></pre>
+<p><strong>&#x6CE8;</strong>&#xFF1A;&#x7BAD;&#x5934;&#x51FD;&#x6570;<strong>&#x6CA1;&#x6709;</strong> <code>prototype</code> &#x5C5E;&#x6027;&#x3002;</p>
+<h2 id="&#x539F;&#x578B;&#x94FE;">&#x539F;&#x578B;&#x94FE;</h2>
+<p>&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x5B9E;&#x4F8B;&#x5728;&#x88AB;&#x8C03;&#x7528;&#x81EA;&#x8EAB;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5C5E;&#x6027;&#x6216;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5C06;&#x4F1A;&#x901A;&#x8FC7;&#x5B9E;&#x4F8B;&#x7684; <code>__proto__</code> &#x5C5E;&#x6027;&#x7EE7;&#x7EED;&#x67E5;&#x627E;&#xFF08;&#x6216;&#x7406;&#x89E3;&#x4E3A;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x4E2D;&#x67E5;&#x627E;&#xFF0C;&#x56E0;&#x4E3A; &#x5B9E;&#x4F8B;&#x7684; <code>__proto__</code> &#x548C;&#x8BE5;&#x5B9E;&#x4F8B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684; <code>prototype</code>&#xFF0C;&#x5B83;&#x4EEC;&#x5F15;&#x7528;&#x7684;&#x662F;&#x540C;&#x4E00;&#x5BF9;&#x8C61;&#x3002;&#xFF09;&#x3002;&#x5F53;&#x5728;&#x5F53;&#x524D;&#x5B9E;&#x4F8B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x4E2D;&#x4ECD;&#x672A;&#x627E;&#x5230;&#x76EE;&#x6807;&#x5C5E;&#x6027;&#xFF08;&#x65B9;&#x6CD5;&#xFF09;&#x65F6;&#xFF0C;&#x6B64;&#x65F6;&#x5C06;&#x8BE5;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x770B;&#x4F5C;&#x53E6;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x7EE7;&#x7EED;&#x901A;&#x8FC7; <code>__proto__</code> &#x5411;&#x4E0A;&#x4E00;&#x7EA7;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x67E5;&#x627E;&#xFF0C;&#x76F4;&#x81F3; <code>Object.prototype</code> &#x6216;&#x76EE;&#x6807;&#x5C5E;&#x6027;&#xFF08;&#x65B9;&#x6CD5;&#xFF09;&#x88AB;&#x627E;&#x5230;&#x3002;</p>
+<h2 id="&#x539F;&#x578B;&#x94FE;&#x7684;&#x7684;&#x7B80;&#x5355;&#x5E94;&#x7528;">&#x539F;&#x578B;&#x94FE;&#x7684;&#x7684;&#x7B80;&#x5355;&#x5E94;&#x7528;</h2>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ele</span> </span>{
+  <span class="hljs-keyword">constructor</span> (id) {
+    <span class="hljs-keyword">this</span>.ele = <span class="hljs-built_in">document</span>.querySelector(id)
+  }
+
+  html (val) {
+    <span class="hljs-keyword">const</span> ele = <span class="hljs-keyword">this</span>.ele
+    <span class="hljs-keyword">if</span> (val) {
+      ele.innerHTML = val
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> <span class="hljs-comment">// &#x94FE;&#x5F0F;&#x64CD;&#x4F5C; &#x529F;&#x80FD;</span>
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> ele.innerHTML
+    }
+  }
+
+  on (type, fn, capture = <span class="hljs-literal">false</span>) {
+    <span class="hljs-keyword">const</span> ele = <span class="hljs-keyword">this</span>.ele
+    ele.addEventListener(type, fn, capture)
+  }
+}
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Ele(<span class="hljs-string">&apos;#app&apos;</span>)
+app.html()
+app.html(<span class="hljs-string">&apos;&lt;p&gt;Pure JavaScript&lt;/p&gt;&apos;</span>).on(<span class="hljs-string">&apos;click&apos;</span>, () =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;click element&apos;</span>))
+</code></pre>
+<h2 id="&#x4F9D;&#x7167;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x548C;&#x539F;&#x578B;&#x94FE;&#x62D3;&#x5C55;&#x7684;&#x77E5;&#x8BC6;&#x70B9;">&#x4F9D;&#x7167;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x548C;&#x539F;&#x578B;&#x94FE;&#x62D3;&#x5C55;&#x7684;&#x77E5;&#x8BC6;&#x70B9;</h2>
+<h3 id="&#x68C0;&#x6D4B;&#x539F;&#x578B;&#x5BF9;&#x8C61;">&#x68C0;&#x6D4B;&#x539F;&#x578B;&#x5BF9;&#x8C61;</h3>
+<pre><code class="lang-js">obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span> <span class="hljs-comment">// &#x68C0;&#x6D4B; obj &#x662F;&#x5426;&#x662F; Object &#x7684;&#x5B9E;&#x4F8B;</span>
+
+<span class="hljs-built_in">Object</span>.prototype.isPrototypeOf(obj) <span class="hljs-comment">// &#x68C0;&#x6D4B; Object.prototype &#x662F;&#x5426;&#x662F;&#x5B58;&#x5728;&#x4E8E; obj &#x7684;&#x539F;&#x578B;&#x94FE;&#x4E0A;</span>
+</code></pre>
+<p><code>instanceof</code> &#x662F;&#x57FA;&#x4E8E;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x7684;&#x68C0;&#x6D4B;&#xFF0C;&#x5373; <code>obj.__proto__</code> &#x5411;&#x4E0A;&#x67E5;&#x627E;&#x662F;&#x5426;&#x5B58;&#x5728; <code>Object.prototype</code>&#x3002;</p>
+<h3 id="&#x679A;&#x4E3E;&#x952E;&#x540D;">&#x679A;&#x4E3E;&#x952E;&#x540D;</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> obj) {} <span class="hljs-comment">// &#x5305;&#x542B;&#x539F;&#x578B;&#x94FE;&#x4E2D;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;</span>
+
+<span class="hljs-built_in">Object</span>.keys(obj) <span class="hljs-comment">// &#x53EA;&#x679A;&#x4E3E;&#x5B9E;&#x4F8B;&#x81EA;&#x8EAB;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#xFF0C;&#x4E0D;&#x5305;&#x542B;&#x539F;&#x578B;&#x94FE;&#x4E2D;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;</span>
+
+<span class="hljs-built_in">Object</span>.getOwnPropertyNames(obj) <span class="hljs-comment">// &#x53EA;&#x679A;&#x4E3E;&#x5B9E;&#x4F8B;&#x81EA;&#x8EAB;&#x6240;&#x6709;&#x5C5E;&#x6027;&#xFF0C;&#x5305;&#x542B;&#x4E0D;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;</span>
+
+obj.hasOwnProperty(<span class="hljs-string">&apos;name&apos;</span>) <span class="hljs-comment">// &#x68C0;&#x6D4B; name &#x5C5E;&#x6027;&#x662F;&#x5426;&#x662F; obj &#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;</span>
+</code></pre>
+<p>&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9664;&#x4F7F;&#x7528; <code>Object.defineProperty</code> &#x7279;&#x522B;&#x6307;&#x5B9A;&#x5C5E;&#x6027;&#x63CF;&#x8FF0;&#x7B26;&#x5916;&#xFF0C;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;&#x90FD;&#x662F;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#x3002;</p>
+<p><code>Object.keys(obj)</code> &#x548C; <code>Object.getOwnPropertyNames(obj)</code> &#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;&#x952E;&#x540D;&#x7EC4;&#x6210;&#x7684;&#x6570;&#x7EC4;&#x3002;</p>
+<h3 id="&#x63CF;&#x8FF0;-new-&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x8FC7;&#x7A0B;">&#x63CF;&#x8FF0; new &#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x8FC7;&#x7A0B;</h3>
+<ol>
+<li><p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x6B64;&#x65F6;&#x5BF9;&#x8C61;&#x4E3A;&#x7A7A;&#xFF1B;</p>
+</li>
+<li><p>&#x5C06;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF08;this &#x5BF9;&#x8C61;&#x5F15;&#x7528;&#xFF09;&#x8D4B;&#x7ED9;&#x65B0;&#x5BF9;&#x8C61;&#xFF1B;</p>
+</li>
+<li><p>&#x6267;&#x884C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#xFF08;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x7ED9;&#x8FD9;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF09;&#xFF1B;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;&#x65B0;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="js-variable.html" class="navigation navigation-prev " aria-label="Previous page: 变量 variable">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="js-hoisting.html" class="navigation navigation-next " aria-label="Next page: 变量提升 hoisting">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"原型与原型链 prototype (chain)","level":"2.2","depth":1,"next":{"title":"变量提升 hoisting","level":"2.3","depth":1,"path":"js-essentials/js-hoisting.md","ref":"js-essentials/js-hoisting.md","articles":[]},"previous":{"title":"变量 variable","level":"2.1","depth":1,"path":"js-essentials/js-variable.md","ref":"js-essentials/js-variable.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sidebar":{"My Github":"https://github.com/lbwa"}},"gitbook":"*","theme-default":{"showLevel":true}},"file":{"path":"js-essentials/js-prototype.md","mtime":"2018-05-21T03:01:54.826Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-21T15:44:13.051Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
