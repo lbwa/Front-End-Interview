@@ -24,6 +24,8 @@
 
 * [事件绑定 event](js-essentials/web-api-event.md)
 
-* [Ajax](js-essentials/web-api-ajax.md)
+* [Ajax](js-essentials/web-api-ajax/web-api-ajax.md)
+
+* [客户端存储 storage](js-essentials/web-api-storage.md)
 
 * [](js-essentials/.md)
