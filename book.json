@@ -1,0 +1,10 @@
+{
+  "links": {
+    "sidebar": {
+      "My Github": "https://github.com/lbwa"
+    }
+  },
+  "theme-default": {
+    "showLevel": true
+  }
+}

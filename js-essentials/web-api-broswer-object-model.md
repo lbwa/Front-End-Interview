@@ -21,7 +21,9 @@ location
 location.href // 全 url
 location.protocol // 当前 url 协议，如 https:，http:，file:
 location.host // 域名主机
-location.pathname // 路径，即主机后的字符串
+location.hostname // location.hostname + location.port 等于 location.host
+location.port // url 中的端口
+location.pathname // 路径，即 location.host 后的字符串
 location.search // 查询字符串，即 ? 后字符串
 location.hash // 路由 hash 值，即 # 后字符串
 
