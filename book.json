@@ -4,7 +4,9 @@
       "My Github": "https://github.com/lbwa"
     }
   },
-  "theme-default": {
-    "showLevel": true
+  "pluginsConfig": {
+    "theme-default": {
+      "showLevel": true
+    }
   }
 }
