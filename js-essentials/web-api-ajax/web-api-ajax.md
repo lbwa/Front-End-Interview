@@ -104,7 +104,7 @@ window.callBack = function (data) {
 
 - `HTML` 在 `src` 请求 JS 脚本后就会立即执行得到的 JS 脚本（除非设置 `defer` 属性，表示在下载 JS 同时，不阻塞 DOM 渲染，并延迟至 DOM 树建立后执行）。
 
-- 一个文档内的 `script` 标签中 `src` 请求的 JS 代码默认（除非设置 `type="module"` ，表示当前 JS 脚本文件是一个单独模块）都属于同一模块（都在同一个容器中）。
+- 因为浏览器会默认会将不同的 `script` (包含外联 JS 和嵌入式 JS)合并为一个模块。那么，一个 `document` 文档内的 `script` 标签中 `src` 请求的 JS 代码默认（除非设置 `type="module"` ，表示当前 JS 脚本文件是一个单独模块）都属于同一模块（都在同一个容器中）。
 
 - `JavaScript` 中圆括号即表示函数调用，如 `fn()` 表示调用 `fn`。
 
