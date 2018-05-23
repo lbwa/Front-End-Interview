@@ -8,7 +8,7 @@
 
 ## 任务源
 
-宏任务（macro-task）: script(整体代码), setTimeout, setInterval, setImmediate, I/O（用户输入、输出）, UI rendering
+宏任务（macro-task）: script(整体代码), setTimeout, setInterval, setImmediate, I/O（存储器读写）, UI rendering
 
 微任务（micro-task）: process.nextTick, Promise（特指 then 中被执行的函数）, Object.observe(已废弃), MutationObserver（HTML5新特性）
 
