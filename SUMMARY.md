@@ -36,12 +36,8 @@
 
 * [页面加载原理的应用](js-essentials/browser-loading-sample.md)
 
-* [web 安全性](js-essentials/browser-security.md)
-
 * [web 性能优化](js-essentials/browser-optimization.md)
 
 ## 项目相关
 
 * [上线与回滚流程要点](js-essentials/project-launch.md)
-
-* [](js-essentials/.md)
