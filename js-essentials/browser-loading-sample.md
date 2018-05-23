@@ -16,6 +16,14 @@
 
 ## 从输入 `url` 到得到 `HTML` 的详细过程
 
+1. 浏览器根据 `DNS` 服务器得到域名的 `IP` 地址
+
+2. 向该 `IP` 的服务器发送请求（`http` 或 `https`）
+
+3. 服务端接受请求，处理之后并返回请求
+
+4. 客户端得到服务端返回的内容
+
 [whatwg-l]:https://html.spec.whatwg.org/multipage/indices.html#event-load
 
 [w3c-draft-l]:https://w3c.github.io/html/single-page.html#eventdef-global-load
