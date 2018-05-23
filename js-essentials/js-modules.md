@@ -40,11 +40,11 @@ formatData(newArr)
 
 [es6-modules]:https://www.ecma-international.org/ecma-262/6.0/?utm_medium=social&utm_source=wechat_session&from=singlemessage&isappinstalled=0#sec-modules
 
-# AMD
+# AMD（ Asynchronous Module Definition ）
 
-`AMD` 规范表示异步加载模块。
+`AMD`（[github wiki][amd-github]） 规范表示 **异步模块定义** 规范。
 
-常用的 `AMD` 模块加载器是 `requirejs`（[官网][requirejs-site]）工具库，它会在全局作用域中暴露 `define` （定义模块）和 `require` 函数（加载模块）。`requirejs` 实现了异步或动态加载依赖的模块机制。它**只**会加载被依赖的模块。
+常用的 `AMD` 实现之一有 `requirejs`（[官网][requirejs-site]）工具库，它会在全局作用域中暴露 `define` （定义模块）和 `require` 函数（加载模块）。`requirejs` 实现了异步或动态加载依赖的模块机制。它**只**会加载被依赖的模块。
 
 - `requirejs`的引入与入口
 
@@ -118,6 +118,8 @@ require(['m1', 'm2'], function (m1, m2) {
 [named-modules]:http://requirejs.org/docs/api.html#modulename
 
 [define-sugar]:http://requirejs.org/docs/whyamd.html#sugar
+
+[amd-github]:https://github.com/amdjs/amdjs-api/wiki/AMD
 
 # CommonJS
 
