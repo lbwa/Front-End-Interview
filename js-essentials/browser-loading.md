@@ -29,7 +29,7 @@ https://example.com
 
 1. 根据 `HTML` 结构生成 `DOM` 树结构（DOM 的数据结构是 树（Tree） 类型）
 
-2. 根据 `CSS` 生成 `CSSOM`(CSS Object Model)
+2. 根据 `CSS` 生成 `CSSOM`（[W3C][w3c]）
 
 3. 将 `DOM` 和 `CSSOM` 整合形成 `Render` 树
 
@@ -54,3 +54,5 @@ https://example.com
 ## 拓展：外部 JS 在 `body` 标签结尾处引入的原因
 
 因为不会阻塞页面的渲染。在下载并执行外部 JS 文件时，此时页面的渲染已经完成。此举让页面更快的完成渲染，减少用户等待时间（渲染未完成时，是白屏）。
+
+[w3c]:https://www.w3.org/TR/cssom-view/
