@@ -85,7 +85,7 @@ for (let i = 0; i < 5; i++) {
 list.appendChild(fragment)
 ```
 
-- 可能频繁被调用的事件（如 `input` 事件、`resize` 事件等以高频率触发的事件）回调函数使用防抖与节流（[我的博客][debounce and throttle]）
+- 可能频繁被调用的事件（如 `input` 事件、`resize` 事件等以高频率触发的事件）回调函数使用防抖或节流（[我的博客][debounce and throttle]）
 
 - 尽早执行操作，如在 `DOMContentLoaded` 事件执行操作，那么此时留给操作的活动时间一定长于 `loaded` 事件。
 
