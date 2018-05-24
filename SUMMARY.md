@@ -20,24 +20,24 @@
 
 ## Web API
 
-* [文档对象模型 DOM](js-essentials/web-api-document-object-model.md)
+* [文档对象模型 DOM](web-api/web-api-document-object-model.md)
 
-* [浏览器对象模型 BOM](js-essentials/web-api-broswer-object-model.md)
+* [浏览器对象模型 BOM](web-api/web-api-broswer-object-model.md)
 
-* [事件绑定 event](js-essentials/web-api-event.md)
+* [事件绑定 event](web-api/web-api-event.md)
 
-* [Ajax](js-essentials/web-api-ajax/web-api-ajax.md)
+* [Ajax](web-api/web-api-ajax/web-api-ajax.md)
 
-* [客户端存储 storage](js-essentials/web-api-storage.md)
+* [客户端存储 storage](web-api/web-api-storage.md)
 
 ## 客户端运行环境
 
-* [页面加载原理](js-essentials/browser-loading.md)
+* [页面加载原理](browser/browser-loading.md)
 
-* [页面加载原理的应用](js-essentials/browser-loading-sample.md)
+* [页面加载原理的应用](browser/browser-loading-sample.md)
 
-* [web 性能优化](js-essentials/browser-optimization.md)
+* [web 性能优化](browser/browser-optimization.md)
 
 ## 项目相关
 
-* [上线与回滚流程要点](js-essentials/project-launch.md)
+* [上线与回滚流程要点](project-experience/project-launch.md)
