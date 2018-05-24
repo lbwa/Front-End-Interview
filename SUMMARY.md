@@ -20,6 +20,8 @@
 
 * [class](js-essentials/js-class.md)
 
+* [Promise](js-essentials/js-promise.md)
+
 ## Web API
 
 * [文档对象模型 DOM](web-api/web-api-document-object-model.md)
