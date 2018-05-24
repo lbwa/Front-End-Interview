@@ -121,7 +121,8 @@ Fn1.prototype instanceof Fn0 // true
 
 // 另外之前直接使用对象字面量重写了 Fn1 的原型，若直接重新定义 constructor，这些行为将导致 constructor 成为了可枚举属性，即 [[enumerable]] 为 true
 Object.defineProperty(Fn1.prototype, 'constructor',{
-  enumerable: false
+  enumerable: false,
+  value: Fn1
 })
 ```
 
