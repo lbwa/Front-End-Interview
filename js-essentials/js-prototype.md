@@ -24,7 +24,7 @@ Function.__proto__ === Function.prototype // true，Function.__proto__ 指向自
 
 ## 原型链
 
-一个引用类型实例在被调用自身不存在的属性或方法时，将会通过实例的 `__proto__` 属性继续查找（或理解为在构造函数的原型对象中查找，因为 实例的 `__proto__` 和该实例的构造函数的 `prototype`，它们引用的是同一对象。）。当在当前实例的构造函数的原型对象中仍未找到目标属性（方法）时，此时将该构造函数的原型对象看作另一个实例，继续通过 `__proto__` 向上一级构造函数的原型对象查找，直至 `Object.prototype` 或目标属性（方法）被找到。
+一个引用类型实例在被调用自身不存在的属性或方法时，将会通过实例的 `__proto__` 属性继续查找（或理解为在构造函数的原型对象中查找，因为 实例的 `__proto__` 和该实例的构造函数的 `prototype`，它们引用的是同一对象。）。当在当前实例的构造函数的原型对象中仍未找到目标属性（方法）时，此时将该构造函数的原型对象看作**另一个实例**（抽象为一个对象整体），继续通过 `__proto__` 向上一级构造函数的原型对象查找，直至 `Object.prototype` 或目标属性（方法）被找到。
 
 ## 原型链的的简单应用
 
@@ -53,7 +53,35 @@ class Ele {
 const app = new Ele('#app')
 app.html()
 app.html('<p>Pure JavaScript</p>').on('click', () => console.log('click element'))
+
+// 子类 SuperEle 继承父类 Ele
+class SuperEle extends Ele {
+  constructor (id) {
+    // 子类中必须调用 super() 以调用父类的 constructor()
+    super(id)
+  }
+
+  replace (val) {
+    const ele = this.ele
+    if (val) {
+      ele.outerHTML = val
+      return this
+    } else {
+      return ele.outerHTML
+    }
+  }
+}
+
+const app1 = new SuperEle('.target')
+
+// 调用 Ele 原型上的方法
+app1.html()
+
+// 调用 SuperEle 原型上的方法
+app1.replace('<p>I am SuperEle instance</p>')
 ```
+
+对于原型链继承的应用详细介绍，可查看章节 [class 章节 class 继承](js-class.md) 。
 
 ## 依照原型对象和原型链拓展的知识点
 

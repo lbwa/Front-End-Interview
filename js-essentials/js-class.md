@@ -29,11 +29,13 @@ class Person {
 
   // 等价于 Person.prototype.name = function () {}
   sayName () {
-    return `My name is ${this.name}.`
+    console.log(`My name is ${this.name}.`)
+    return this
   }
 
   sayAge () {
-    return `My age is ${this.age}`
+    console.log(`My age is ${this.age}`)
+    return this
   }
 }
 
@@ -61,23 +63,29 @@ jane.__proto__ === Person.prototype // true
 - class 继承
 
 ```js
-class BusyPerson extends Person {
-  constructor (name, age) {
+class FullPerson extends Person {
+  constructor (name, age, gender) {
+    // 子类必须调用 super() 以调用父类的 constructor(name, age)
+    // 因为子类构造函数中的 this 是基于父类构造函数的 this 对象再加工的
+    // super() 将返回父类构造函数 this 对象（即子类的实例）
+    // super() 相当于 Person.prototype.constructor.call(this)
     super(name, age)
+    this.gender = gender
   }
 
-  status () {
-    return `${this.name} is busy right now.`
+  sayGender () {
+    console.log(`${this.name} is ${this.gender}`)
+    return this
   }
 }
 
-const john = new BusyPerson('John', 20)
-john.sayName() // "My name is John."
-john.sayAge() // "My age is 20"
-john.status() // 'John is busy right now'
+const john = new FullPerson('John', 20, 'male')
+john.sayName().sayAge().sayGender() // "My name is John." "My age is 20" "John is male"
 ```
 
-# class 对比普通 JS 构造函数
+示例中，`FullPerson` 继承了 `Person` 的方法。
+
+# 拓展：class 与普通 JS 构造函数的区别
 
 - 原型对象方法的定义
 
@@ -86,3 +94,35 @@ john.status() // 'John is busy right now'
 - 原型链继承的实现
 
 `class` 的原型继承语法（`extends`即可实现继承）较使用普通 JS 构造函数实现原型链继承**逻辑更为清晰**。
+
+在使用普通 JS 构造函数实现的一般方法是：
+
+```js
+function Fn0 () {/* do something */}
+function Fn1 () {/* do something */}
+
+// 赋值对象字面量将直接导致 Fn1 原型被复写而非被修改，那么 Fn1 原型将丢失 constructor
+Fn1.prototype = new Fn0()
+Fn1.prototype.hasOwnProperty('constructor') // false
+
+// 另一种实现方式如下，二者区别在于 Object.create() 创建出的新对象的 __proto__ 可设置为 null
+Fn1.prototype = Object.create(Fn0.prototype)
+
+/**
+ * 1. 经过以上继承，Fn1.prototype.__proto__ === Fn0.prototype，此时，把 Fn1.prototype
+ * 看作一个实例整体，即为 Fn0 的一个实例，那么 Fn1.prototype 就不存在 constructor 属性，那么
+ * Fn1.prototype.constructor 访问的实际上是原型链上 Fn1.prototype 的原型对象 Fn0.prototype 的
+ * constructor，即 Fn1 原型已丢失 constructor。
+ */
+
+Fn1.prototype instanceof Fn0 // true
+
+// 极易忽略的一步，将 Fn1 原型的 constructor 指回原构造函数，重新定义 Fn1 函数原型的 constructor。
+
+// 另外之前直接使用对象字面量重写了 Fn1 的原型，若直接重新定义 constructor，这些行为将导致 constructor 成为了可枚举属性，即 [[enumerable]] 为 true
+Object.defineProperty(Fn1.prototype, 'constructor',{
+  enumerable: false
+})
+```
+
+在 `class` 中只需要使用 `extends` 即可实现原型链。从代码量和直观感受来看，`class` 实现原型链继承更为**简洁易读**，逻辑更为**清晰**，尽管二者实现的内部逻辑都是相似的，即 `class` 和 `extends` 本质都只是一种**语法糖**。
