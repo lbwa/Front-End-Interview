@@ -1,6 +1,8 @@
 # 作用域
 
-作用域限定了变量的有效范围。ES6 之前（不包含 ES6），`JavaScript` 中只有函数和全局作用域。ES6 之后，`JavaScript` 有函数、全局和**块级作用域**。
+在 `JavaScript` 中 作用域的工作模式是 **词法作用域（lexical scope）**，标准中称为 **词法环境（lexical environments）**。
+
+作用域（lexical environments）限定了变量的有效范围。ES6 之前（不包含 ES6），`JavaScript` 中只有函数和全局作用域。ES6 之后，`JavaScript` 有函数、全局和**块级作用域**。
 
 块级作用域因 `let` 和 `const` 声明变量而出现，它**只**对 `let` 和 `const` 声明的变量有效。常见块级作用域有大括号内的区域，for 循环中的小括号区域，即条件区域。
 

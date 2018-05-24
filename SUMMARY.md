@@ -1,12 +1,12 @@
 # 目录
 
-- [简介 introduction](README.md)
+* [简介 introduction](README.md)
 
 ## 基础语法和规则
 
-- [变量 variable](js-essentials/js-variable.md)
+* [变量 variable](js-essentials/js-variable.md)
 
-- [原型与原型链 prototype (chain)](js-essentials/js-prototype.md)
+* [原型与原型链 prototype (chain)](js-essentials/js-prototype.md)
 
 * [变量提升 hoisting](js-essentials/js-hoisting.md)
 
