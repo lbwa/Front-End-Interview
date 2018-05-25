@@ -20,7 +20,9 @@
 
 * [class](js-essentials/js-class.md)
 
-* [Promise API](js-essentials/js-promise.md)
+* [Promise](js-essentials/js-promise.md)
+
+* [ES6+ 常用功能](js-essentials/js-common-functions.md)
 
 ## Web API
 
