@@ -8,6 +8,8 @@
 
 * [原型与原型链 prototype (chain)](js-essentials/js-prototype.md)
 
+* [原型链实际应用 prototype application](js-essentials/js-prototype-application.md)
+
 * [变量提升 hoisting](js-essentials/js-hoisting.md)
 
 * [作用域 lexical environments](js-essentials/js-lexical-environments.md)
