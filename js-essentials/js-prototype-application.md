@@ -47,7 +47,9 @@ ele.__proto__.hasOwnProperty('html') // true
     /**
      * 1. 关键点：与 jQuery 的不同之处，Zepto 在此处实例化
      * 2. 不同于 jQuery 中直接暴露构造函数 jQuery（别名 $），zepto.js 中 $ 并非构造
-     * 函数对象，而是在内部构实现构造函数 Z，不直接向外部暴露构造函数
+     * 函数对象，而是在内部构实现构造函数 Z，因为后文有 Z.prototype = $.fn 直接复写了
+     * Z 的原型对象，那么先前的 constructor 属性已经丢失，且复写后的原型中指定
+     * constructor 为 zepto.Z，那么外部是无法访问构造函数 Z 的
      */
     return new Z(dom, selector)
   }
@@ -70,7 +72,7 @@ ele.__proto__.hasOwnProperty('html') // true
   // Zepto 原型对象
   $.fn = {
     // constructor: zepto.Z 呼应后面的 zepto.Z.prototype = $.fn
-    constructor: zepto.Z,
+    constructor: zepto.Z, // Z.prototype.constructor 将返回 zepto.Z 而不是 Z
     css: function (key, value) {},
     html: function (value) {},
     // ...
@@ -78,7 +80,7 @@ ele.__proto__.hasOwnProperty('html') // true
 
   // Z 的显式原型对象对外暴露的接口是 $.fn
   // 复写构造函数 Z 的原型
-  // zepto.Z.prototype = Z.prototype 阻止外部访问 Z，$.fn.constructor 将返回 zepto.Z 函数
+  // $.fn.constructor 将返回 zepto.Z 函数，因为 $.fn 中已经指定 constructor
   zepto.Z.prototype = Z.prototype = $.fn
 
   // 内部 zepto 对象对外暴露的接口是 $.zepto
