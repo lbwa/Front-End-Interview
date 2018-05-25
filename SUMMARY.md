@@ -20,7 +20,7 @@
 
 * [class](js-essentials/js-class.md)
 
-* [Promise](js-essentials/js-promise.md)
+* [Promise API](js-essentials/js-promise.md)
 
 ## Web API
 
