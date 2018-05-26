@@ -16,7 +16,7 @@
 
 ## 任务源
 
-- 宏任务（macrotask）: script(整体代码)，setTimeout，setInterval，setImmediate，I/O（可拓展至 Web API，如DOM 操作，用户交互，网络任务，history travelsal（[来源][generic-task-sources]））, **UI rendering**。
+- 宏任务（macrotask）: script（整体代码（[来源][ECMA-Script-records]），即代码执行的基准执行上下文 [execution context](js-execution-context.md)），setTimeout，setInterval，setImmediate，I/O（可拓展至 Web API，如DOM 操作，用户交互，网络任务，history travelsal（[来源][generic-task-sources]））, **UI rendering**。
 
 - 微任务（microtask）: process.nextTick（[Node.js][process.nextTick]），Promise 原型方法（即 `then`、`catch`、`finally`）, Object.observe(已废弃)，MutationObserver（[DOM Standard][mutation-observer]）
   - **特别注明**：在 `ECMAScript` 中称 `microtask` 为 `jobs`（[来源][ECMAScript-jobs]，其中 [EnqueueJob][EnqueueJob] 即指添加一个 `microtask`）。
@@ -42,6 +42,8 @@
             - > all callbacks passed to process.nextTick() will be resolved before the event loop continues.
 
 - 特别指明，`Web API` （event loops 章节在标准中是属于 Web API 大类）是属于宏任务类型，如 `Ajax` 属于 `I/O`（来源：[using a resource][using-a-resource]），但 `Ajax` 的回调函数都是微任务类型。
+
+[ECMA-Script-records]:https://www.ecma-international.org/ecma-262/#script-record
 
 [generic-task-sources]:https://www.w3.org/TR/html5/webappapis.html#generic-task-sources
 
