@@ -8,23 +8,33 @@
 
 * [变量提升 hoisting](js-essentials/js-hoisting.md)
 
+* [作用域 lexical environments](js-essentials/js-lexical-environments.md)
+
+----
+
 * [原型与原型链 prototype (chain)](js-essentials/js-prototype.md)
 
 * [原型链实际应用 prototype application](js-essentials/js-prototype-application.md)
 
-* [作用域 lexical environments](js-essentials/js-lexical-environments.md)
+----
 
-* [函数执行上下文 this](js-essentials/js-object-this.md)
+* [函数 this 对象](js-essentials/js-object-this.md)
+
+* [执行上下文 execution context](js-essentials/js-execution-context.md)
+
+----
 
 * [异步执行 async](js-essentials/js-async.md)
 
 * [事件循环 event loops](js-essentials/js-event-loops.md)
 
+* [Promise 对象](js-essentials/js-promise.md)
+
+----
+
 * [模块化 modules](js-essentials/js-modules.md)
 
-* [class](js-essentials/js-class.md)
-
-* [Promise](js-essentials/js-promise.md)
+* [类 class](js-essentials/js-class.md)
 
 * [ES6+ 常用功能](js-essentials/js-common-functions.md)
 
