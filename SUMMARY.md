@@ -16,6 +16,8 @@
 
 * [函数执行上下文 this](js-essentials/js-object-this.md)
 
+* [异步执行 async](js-essentials/js-async.md)
+
 * [事件循环 event loops](js-essentials/js-event-loops.md)
 
 * [模块化 modules](js-essentials/js-modules.md)
