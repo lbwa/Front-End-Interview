@@ -2,6 +2,12 @@
 
 以下简要叙述 `jQuery` 和 `zepto` 中的原型应用。
 
+前置知识：
+
+- 构造函数实例化时将生成一个**新对象**（章节 - [描述 new 的实例化过程][new-instance]）
+
+[new-instance]:https://lbwa.github.io/Front-End-Interview/js-essentials/js-prototype.html#描述-new-的实例化过程
+
 ## 在 jQuery 和 zepto 的原型应用
 
 - jQuery 中如何使用原型
@@ -10,11 +16,15 @@
 (function (window) {
   // jQuery 是真正的构造函数 init 的一个实例
   // jQuery 在一开始就进行了实例化
-  const jQuery = function (selector) {
+  const $ = jQuery = function (selector) {
     return new jQuery.fn.init(selector)
   }
 
   // 重写构造函数 init 的实例的原型对象
+  /**
+   * 1. 重写构造函数原型对象和经由 $.fn 来重写原对象的原因都是在于规范构造函数的功能拓展
+   * 2. 因为不对外暴露构造函数，那么外部拓展原型对象，只能通过 $.fn 来拓展
+   */
   jQuery.fn = jQuery.prototype = {
     // 因为 jQuery 变量是 jQuery.fn.init 的实例，那么此处指明了 $ 的 constructor 为 jQuery
     constructor: jQuery,
@@ -122,6 +132,10 @@ ele.__proto__.hasOwnProperty('html') // true
   }
 
   // Zepto 原型对象
+  /**
+   * 1. 重写构造函数原型对象和经由 $.fn 来重写原对象的原因都是在于规范构造函数的功能拓展
+   * 2. 因为不对外暴露构造函数，那么外部拓展原型对象，只能通过 $.fn 来拓展
+   */
   $.fn = {
     // constructor: zepto.Z 呼应后面的 zepto.Z.prototype = $.fn
     constructor: zepto.Z, // Z.prototype.constructor 将返回 zepto.Z 而不是 Z，也不是对外接口 $
@@ -186,4 +200,42 @@ ele.__proto__.hasOwnProperty('html') // true
 
 在调用二者相同的实例化方法 `$(selector)` 后，此时的实例就已经可以使用内部构造函数的原型方法了。
 
-# 原型对象的拓展性（插件机制）
+# 原型对象的拓展性（插件机制） —— 重要
+
+（以下 `$` 指代在 `jQuery` 中的 `jQuery` 和 `$`，在 zepto.js 中的 `$`）
+
+```js
+// 以 jQuery 为例，zepto.js 同理
+jQuery.fn = jQuery.prototype = {
+  // ...
+}
+
+// jQuery 中拓展插件
+jQuery.fn.getNodeName = function () {
+  return this[0].nodeName
+}
+
+// 将拓展后的原型对象重写为内部构造函数 init 的原型对象
+// 在实例化 init 后（即调用 $(selector)），即可使用插件
+init.prototype = jQuery.fn
+```
+
+二者将新的原型对象先赋值给 `$.fn` 的原因就是在于赋值后可拓展插件，即 `$.fn` 相当于是对外可**拓展插件的接口**。
+
+- 通过 `$.fn` 拓展插件而不直接重写构造函数原型的原因（优势）
+
+    - 在模块外部二者均未暴露内部构造函数，只暴露了实例化方法 `$` 变量，保证了对全局变量的最小影响，同时又不影响拓展构造函数原型对象。而且外部也不用关心内部的构造函数的实现。（减小污染）
+
+    - 将拓展插件功能统一在 `$.fn` 接口上，方便管理（集中接口）
+
+## 总结
+
+原型对象的拓展性对后续的库的拓展性开发，SDK 封装等都是非常重要的一个**核心点**。
+
+为了拓展性需要建立一个新的对象重写构造函数的原型对象，因为不对外暴露构造函数，只能通过这个新的对象作为实例化方法的一个属性（拓展接口）向外暴露，以达到拓展构造函数原型对象的目的。
+
+- 如何拓展库的原型对象（定义库的拓展性）？
+
+    - 内部实现：在模块内部中，在重写构造函数对象之前，先将新的原型对象赋值给 `$.extend` 接口，再由 `$.extend` 重写内部构造函数的原型对象。这样保证了在重写之前就已经拓展了库的插件。
+
+    - 外部体现：对外**只暴露**实例化方法（如 `jQuery` 中暴露 `$(selector)` 实例方法）的变量 `$`，以该变量的某一属性定义为插件接口（此处自定义 `$.extend` 指代该接口），通过该外部接口来修改内部构造函数原型对象，同时保证构造函数的私有化。
