@@ -8,7 +8,7 @@
 
 [new-instance]:https://lbwa.github.io/Front-End-Interview/js-essentials/js-prototype.html#描述-new-的实例化过程
 
-## 在 jQuery 和 zepto 的原型应用
+## jQuery 和 zepto 中的原型应用
 
 - jQuery 中如何使用原型
 
