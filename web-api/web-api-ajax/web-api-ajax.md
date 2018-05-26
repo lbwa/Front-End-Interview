@@ -7,8 +7,8 @@ Ajax 原理如下：
 ```js
 const xhr = new XMLHttpRequest()
 
-// false 为同步执行 JS 代码，待服务器响应后再继续执行 Ajax 接下来的代码
-xhr.open('GET', 'https://api.github.com', false)
+// 第三个参数（Boolean）为是否异步执行请求，即待服务器响应后再继续执行 Ajax 接下来的代码
+xhr.open('GET', 'https://api.github.com', true)
 xhr.onreadystatechange = function () { // 异步回调
   if (xhr.readyState === 4) {
     if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
@@ -20,6 +20,10 @@ xhr.onreadystatechange = function () { // 异步回调
 }
 xhr.send(null)
 ```
+
+**注**：根据最新 [xhr Standard - open() method][xhr-Standard]，主线程中的同步的 `XMLHttpRequest` 已被废弃，默认地，`open()` 方法第三参数为 `true`，即默认异步请求。
+
+[xhr-Standard]:https://xhr.spec.whatwg.org/#the-open()-method
 
 ## 状态码
 
