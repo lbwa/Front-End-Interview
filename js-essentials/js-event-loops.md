@@ -16,7 +16,7 @@
 
 ## 任务源
 
-- 宏任务（macrotask）: script（整体代码（[来源][ECMA-Script-records]），即代码执行的基准执行上下文 [execution context](js-execution-context.md)），setTimeout，setInterval，setImmediate，I/O（可拓展至 Web API，如DOM 操作，用户交互，网络任务，history travelsal（[来源][generic-task-sources]））, **UI rendering**。
+- 宏任务（macrotask）: script（整体代码（[来源][ECMA-Script-records]），即代码执行的基准执行上下文 [execution context](js-execution-context/js-execution-context.md)），setTimeout，setInterval，setImmediate，I/O（可拓展至 Web API，如DOM 操作，用户交互，网络任务，history travelsal（[来源][generic-task-sources]））, **UI rendering**。
 
 - 微任务（microtask）: process.nextTick（[Node.js][process.nextTick]），Promise 原型方法（即 `then`、`catch`、`finally`）, Object.observe(已废弃)，MutationObserver（[DOM Standard][mutation-observer]）
   - **特别注明**：在 `ECMAScript` 中称 `microtask` 为 `jobs`（[来源][ECMAScript-jobs]，其中 [EnqueueJob][EnqueueJob] 即指添加一个 `microtask`）。
@@ -89,7 +89,7 @@
 
 2. 设置当前事件循环的 `当前执行中的任务` 为第 1 步被选出的 task。
 
-3. `Run`：执行当前被选出的 task（即 task 进入最上层[执行上下文栈](js-execution-context.md) `execution context stack`）。
+3. `Run`：执行当前被选出的 task（即 task 进入最上层[执行上下文栈](js-execution-context/js-execution-context.md) `execution context stack`）。
 
 4. 重置当前事件循环的 `当前执行中的任务` 为默认值 null。
 
@@ -107,7 +107,7 @@
 
         4. 设置当前事件循环的 `当前执行中的任务` 值为上一步选中的 `microtask`。
 
-        5. `Run`：执行选中的 `microtask`（进入最上层[执行上下文栈](js-execution-context.md)（来源1：[HTML Standard EnqueueJob 7.6][enqueue-job]、来源2：[ECMAScript EnqueueJob 步骤4][ECMAScript-enqueue-job-step-4]））。
+        5. `Run`：执行选中的 `microtask`（进入最上层[执行上下文栈](js-execution-context/js-execution-context.md)（来源1：[HTML Standard EnqueueJob 7.6][enqueue-job]、来源2：[ECMAScript EnqueueJob 步骤4][ECMAScript-enqueue-job-step-4]））。
 
         6. 重置置当前事件循环的 `当前执行中的任务` 值为 null。
 
@@ -133,7 +133,7 @@
 
         3. 设置 `当前执行中的任务` 为 `子任务`。这种微任务的任务源是微任务类型的任务源。这是一个复合微任务的 `子任务`。
 
-        4. 执行 `子任务`（进入[执行上下文栈](js-execution-context.md)）。
+        4. 执行 `子任务`（进入[执行上下文栈](js-execution-context/js-execution-context.md)）。
 
         5. 重置当前事件循环的 `当前执行中的任务` 为 parent。
 

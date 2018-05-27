@@ -8,7 +8,12 @@
 
 ## 执行上下文栈（亦称调用栈）定义
 
-执行上下文栈（`execution context stack`，亦称调用栈 `call stack`）用于追踪执行上下文。当前执行上下文总是调用栈中最上层的那一个执行上下文。
+执行上下文栈（`execution context stack`，亦称调用栈 `call stack`）用于追踪执行上下文。当前执行上下文总是执行上下文栈中最上层的那一个执行上下文。
+
+注：
+  - 执行上下文栈即是执行上下文的**容器**。
+
+![execution-context](execution-context.png)
 
 ## Running execution context 的更替
 
