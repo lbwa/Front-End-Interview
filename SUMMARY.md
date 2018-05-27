@@ -20,7 +20,7 @@
 
 * [函数 this 对象](js-essentials/js-object-this.md)
 
-* [执行上下文 execution context](js-essentials/js-execution-context.md)
+* [执行上下文/调用栈 execution context](js-essentials/js-execution-context.md)
 
 ----
 

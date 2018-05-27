@@ -10,7 +10,7 @@
 
 执行上下文栈（`execution context stack`，亦称调用栈 `call stack`）用于追踪执行上下文。当前执行上下文总是调用栈中最上层的那一个执行上下文。
 
-## 当前执行上下文的交替
+## Running execution context 的更替
 
 （[来源][ECMAScript-execution-context]）
 

@@ -65,71 +65,77 @@
 
 **相同类型**的任务源的任务被调用时进入相同的任务队列，反之进入不同的任务队列。
 
+### 标准（W3C and WHATWG）中的队列模型
+
 **注**：
 
 - 依据标准[描述][macro-task-queue]，除非特别指明是 `microtask queue`，那么我们一般常说的任务队列（`task queue`）都是指 `宏任务队列`（`macrotask queue`）。
 
-- 每个事件循环都有一个 `currently running task`，用于轮询任务（`handle reentrancy`）。
+- 每个事件循环都有一个 `当前执行中的任务`（`currently running task`），用于轮询队列中的任务（`handle reentrancy`）。
 
-- 每个事件循环都有一个 `performing a microtask checkpoint flag`（初始为 false），用于阻止再次进入当前的微任务队列。
+- 每个事件循环都有一个 `已执行 microtask 检查点标志`（`performing a microtask checkpoint flag`）（初始值一定为 false）表示已经执行了 `microtask` 检查点，用于阻止执行 `microtask checkpoint` 算法的可重入调用。
+    
+    - 可重入调用（[reentrant invocation][reentrant-invocation]）是指，算法在执行过程中意外中断时，在当前调用未完成的情况下被再次从头开始执行。一旦可重入执行完成，上一次被中断的调用将会恢复执行。
 
-### 标准（W3C and WHATWG）中的队列模型
+[macro-task-queue]:https://www.w3.org/TR/html5/webappapis.html#microtask
+
+[reentrant-invocation]:https://en.wikipedia.org/wiki/Reentrancy_(computing)
 
 （[来源][processing-model]）
 
-1. 在 `browsing context` 事件循环的情况下，选择当前 `task queue` 中**最早**加入的 task。如果没有任务被选中（task queue 为空），那么直接跳转到第 6 步 `Microtasks`
+1. 在 `browsing context` 事件循环的情况下（与第 8 步并列），选择当前 `task queue` 中**最早**加入的 task。如果没有任务被选中（即当前 `task queue` 为空），那么直接跳转到第 6 步 `Microtasks`
     
     - 如 `Ajax` 请求返回数据时，若当前 `task queue` 为空时，将直接跳转执行回调函数微任务。
 
-2. 设置当前事件循环的 `currently running task` 为第 1 步被选出的 task。
+2. 设置当前事件循环的 `当前执行中的任务` 为第 1 步被选出的 task。
 
-3. `Run`：执行当前被选出的 task（即 task 进入调用栈）。
+3. `Run`：执行当前被选出的 task（即 task 进入最上层[执行上下文栈](js-execution-context.md) `execution context stack`）。
 
-4. 重置当前事件循环的 `currently running task` 为默认值 null。
+4. 重置当前事件循环的 `当前执行中的任务` 为默认值 null。
 
 5. 从当前的 `task queue` 中移除在第 3 步执行过的任务。
 
-6. `Microtasks`：执行 `microtask checkpoint`。
+6. `Microtasks`：执行 `microtask` 检查点。
 
-    - 当 `performing a microtask checkpoint flag` 为 false 时：
+    - 当 `已执行 microtask 检查点标志` 为 false 时：
 
-        1. 设置 `performing a microtask checkpoint flag` 为 true。
+        1. 设置 `已执行 microtask 检查点标志` 为 true。
 
-        2. `Microtask queue handling`：在当前 `microtask queue` 为空时，跳转到步骤 `Done` 之后。
+        2. `操作（handling) microtask 队列`：在当前 `microtask queue` 为空时，跳转到步骤 `Done` 之后。
 
         3. 选中 `microtask queue` 中最早加入的 `microtask`。
 
-        4. 设置当前事件循环的 `currently running task` 值为上一步选中的 `microtask`。
+        4. 设置当前事件循环的 `当前执行中的任务` 值为上一步选中的 `microtask`。
 
-        5. `Run`：执行选中的 `microtask`。
+        5. `Run`：执行选中的 `microtask`（进入最上层[执行上下文栈](js-execution-context.md)（来源1：[HTML Standard EnqueueJob 7.6][enqueue-job]、来源2：[ECMAScript EnqueueJob 步骤4][ECMAScript-enqueue-job-step-4]））。
 
-        6. 重置置当前事件循环的 `currently running task` 值为 null。
+        6. 重置置当前事件循环的 `当前执行中的任务` 值为 null。
 
-        7. 从 `microtask queue` 中移除第 5 步 `Run` 被执行的 `microtask`，回到第 3 步 `Microtask queue handling`。
+        7. 从 `microtask queue` 中移除第 5 步 `Run` 被执行的 `microtask`，回到第 3 步 `操作（handling) microtask 队列`。
 
-            - 可理解为在一个事件循环中，总是要**清空**当前事件循环中的微任务队列**才会进行重渲染**（`Vue.js` 的 DOM 更新原理）。
+            - **重点**：为在一个事件循环中，总是要**清空**当前事件循环中的微任务队列**才会进行重渲染**（`Vue.js` 的 DOM 更新原理）。
 
         8. `Done`：对于每一个 `responsible event loop` 是当前事件循环的环境设置对象（`environment setting object`），向它（环境设置对象）告知关于 `rejected` 状态的 `Promise` 对象的信息。
         
             - 个人理解为触发浏览器 `uncaught` 事件，并抛出 `unhandled promise rejections` 错误（[W3C][unhandled-promise-rejections]）。
 
-            - 此步骤主要是向开发者告知 `rejected` 状态的 `Promise`，另外在现行 JS 中回调函数（solitary callback）都是依靠 `Promise` 对象来实现。
+            - 此步骤主要是向开发者告知存在未被捕获的 `rejected` 状态的 `Promise`。
 
         9. 执行并清空 `Indexed Database`（用于本地存储数据的 API） 的修改请求。
 
-        10. 重置 `performing a microtask checkpoint flag` 为 false。
+        10. 重置 `已执行 microtask 检查点标志` 为 false。
 
-    - 当一个复合微任务（`compound microtask`）执行时，客户端必须去执行一系列的复合微任务的子任务（subtask）
+    - 当一个复合微任务（`compound microtask`）执行时，客户端必须去执行一系列的复合微任务的`子任务`（subtask）
 
-        1. 设置 parent 为当前事件循环的 `currently running task`。
+        1. 设置 parent 为当前事件循环的 `当前执行中的任务`。
 
-        2. 设置 subtask 为一个由一系列给定步骤组成的新 microtask。
+        2. 设置 `子任务` 为一个由一系列给定步骤组成的新 microtask。
 
-        3. 设置 `currently running task` 为 `subtask`。这种微任务的任务源是微任务类型的任务源。这是一个复合微任务的 `subtask`。
+        3. 设置 `当前执行中的任务` 为 `子任务`。这种微任务的任务源是微任务类型的任务源。这是一个复合微任务的 `子任务`。
 
-        4. 执行 `subtask`。
+        4. 执行 `子任务`（进入[执行上下文栈](js-execution-context.md)）。
 
-        5. 重置当前事件循环的 `currently running task` 为 parent。
+        5. 重置当前事件循环的 `当前执行中的任务` 为 parent。
 
 7. 更新 DOM 渲染。
 
@@ -140,6 +146,10 @@
 9. 回到第 1 步执行下一个事件循环。
 
 [processing-model]:https://www.w3.org/TR/html5/webappapis.html#event-loops-processing-model
+
+[enqueue-job]:https://html.spec.whatwg.org/#enqueuejob(queuename,-job,-arguments):queue-a-microtask
+
+[ECMAScript-enqueue-job-step-4]:http://www.ecma-international.org/ecma-262/#sec-enqueuejob
 
 [unhandled-promise-rejections]:https://www.w3.org/TR/html5/webappapis.html#notify-about-rejected-promises
 
@@ -200,9 +210,11 @@ console.log('I am from script bottom')
 
 3. 只有当前微任务队列清空后，才会调用下一个宏任务队列中的任务。即进入下一个事件循环。
 
-4. `new Promise` 时，`Promise` 参数中的匿名函数是**立即执行**的。被添加进`微任务队列`的是 `then` 中的回调函数。特别地，只有 `Promise` 中的状态为 `resolved` 或 `rejected` 后，才会调用 then 函数（或 catch，或 finally 函数，原理同 then），才会添加微任务至队列中。
+4. `new Promise` 时，`Promise` 参数中的匿名函数是**立即执行**的。被添加进`微任务队列`的是 `then` 中的回调函数。
 
-5. `setTimeout` 是作为任务分发器的存在，他自身执行会创建一个计时器，只有待计时器结束后，才会将 `setTimeout` 中的第一参数函数添加至`宏任务队列`。换一种方式理解，`setTimeout` 中的函数**一定**是在**下一个事件循环**中被调用。
+    - **特别地**，只有 `Promise` 中的状态为 `resolved` 或 `rejected` 后（[Promise 标准][promise-then]），才会调用 `Promise` 的原型方法（即 [then][promise-then]、`catch`（因为是 `then` 的[语法糖][promise-catch]，所以与 `then` 同理）、`finally`（`onfinally`时[触发][promise-finally]）），才会将回调函数到添加微任务队列中。
+
+5. `setTimeout` 是作为任务分发器的存在，他自身执行会创建一个计时器，只有待计时器结束后，才会将 `setTimeout` 中的第一参数函数添加至`宏任务队列`。换一种方式理解，`setTimeout` 中的函数**一定不是在当前事件循环**中被调用。
 
 以下是在客户端（Node.js 可能有不同结果）的输入结果：
 
@@ -215,7 +227,11 @@ I am from 2nd ins.then()
 I am from setTimeout
 ```
 
-[macro-task-queue]:https://www.w3.org/TR/html5/webappapis.html#microtask
+[promise-then]:https://promisesaplus.com/#point-26
+
+[promise-catch]:https://www.ecma-international.org/ecma-262/#sec-promise.prototype.catch
+
+[promise-finally]:https://tc39.github.io/ecma262/#sec-promise.prototype.finally
 
 ## 事件循环拓展应用 —— 异步操作
 
