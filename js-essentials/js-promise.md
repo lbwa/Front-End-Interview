@@ -1,5 +1,7 @@
 # Promise API
 
+（主要参考 [promise 标准][promise-standard]）
+
 - 解决 `回调地狱` 的问题
 
 `promise` 将 `callback hell` 转变为 `callback` **链式调用**。极大增强代码的易读性，并简洁地体现回调函数的逻辑性。
@@ -66,6 +68,10 @@ Promise.all([Promise.resolve(true), Promise.reject(false)]).catch(err => err)
 
 1. 并不推荐将 `reject` 时触发的函数写为 `then` 的第二参数，推荐做法是使用 `catch()` 函数包裹。这样遵循 `链式调用` 的原则，将 `resolve` 与 `reject` 时调用的回调函数**分离**开来。
 
-2. **不推荐**在 `catch` 中使用 `{ throw new Error(err) }` 语法，那么 `catch` 将返回一个 `rejected` 状态的 `Promise` 对象，那么 `catch` 后续的 `then` 将继承前面的 `catch` 函数返回的 `rejected` 状态的 `Promise` 对象。即最终返回的 `Promise` 对象将是状态为 `rejected` 的 `Promise` 对象。这将导致 `rejected` 触发浏览器相关 `uncaught` 事件，并抛出 `Uncaught (in promise) ...` 错误。
+2. **不推荐**在 `catch` 中使用 `{ throw new Error(err) }` 语法，如果这样做，那么 `catch` 将返回一个 `rejected` 状态的 `Promise` 对象，那么 `catch` 后续的 `then` 将继承前面的 `catch` 函数返回的 `rejected` 状态的 `Promise` 对象。即最终返回的 `Promise` 对象将是状态为 `rejected` 的 `Promise` 对象。这将导致 `rejected` 触发浏览器相关 `uncaught` 事件，并抛出 `Uncaught (in promise) ...` 错误。
+
+    - **推荐**在 `catch` 中使用 `console.error(err)` 可达到同样效果。
 
 [es8-promise-catch]:https://www.ecma-international.org/ecma-262/8.0/#sec-promise.prototype.catch
+
+[promise-standard]:https://promisesaplus.com/
