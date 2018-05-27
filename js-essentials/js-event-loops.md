@@ -184,23 +184,23 @@ console.log('I am from script bottom')
 
 执行原理（依据 Chrome 66 的 V8 实现）如下：
 
-1. 整个代码段 `script` 进入调用栈（`call stack`），执行 1 处代码调用 `console.log` 函数，该函数进入调用栈，之前 `script` 执行暂停（冻结），转交执行权给 `console.log`。`console.log` 执行完成立即弹出调用栈，`script` 恢复执行。
+1. 整个代码段 `script` 进入执行上下文栈（亦称调用栈，`call stack`（[来源](js-execution-context/js-execution-context.md)）），执行 1 处代码调用 `console.log` 函数，该函数进入调用栈，之前 `script` 执行上下文执行暂停（冻结），转交执行权给 `console.log`。`console.log`成为[当前执行中的执行上下文](js-execution-context/js-execution-context.md)（`running execution context`）。`console.log` 执行完成立即弹出调用栈，`script` 恢复执行。
 
-2. `setTimeout` 是一个任务分发器，该函数本身会立即执行，延迟执行的是其中传入的参数（匿名函数 a）。`script` 暂停执行，内部建立一个 1 秒计时器。`script` 恢复执行接下来的代码。1 秒后，再将匿名函数 a 插入宏任务队列（根据任务队列，可能不会立即执行）。
+2. `setTimeout` 是一个任务分发器，该函数本身会立即执行，延迟执行的是其中传入的参数（匿名函数 a）。`script` 暂停执行，内部建立一个 1 秒计时器。`script` 恢复执行接下来的代码。1 秒后，再将匿名函数 a 插入宏任务队列（根据宏任务队列是否有之前加入的宏任务，可能不会立即执行）。
 
 3. 声明恒定变量 `ins`，并初始化为 `Promise` 实例。特别地，`Promise` 内部代码会在本轮事件循环立即执行。那么此时， `script` 冻结，开始执行 `console.log`，`console.log` 弹出调用栈后，`resolve()` 进入调用栈，将 `Promise` 状态 `resolved`，并之后弹出调用栈，此时恢复 script 执行。
 
-4. 调用 `ins` 的 `then` 方法，将第一个 `then` 中回调添加到 `微任务队列`，继续执行，将第二个 then 中回调添加到 `微任务队列`。
+4. 因为第 3 步，已经在本轮宏任务完成前 `resolved` ，否则，将跳过第 4 步向本轮事件循环的微任务队列添加回调函数（[来源](js-promise.md)）。调用 `ins` 的 `then` 方法，将第一个 `then` 中回调添加到 `微任务队列`，继续执行，将第二个 `then` 中回调添加到 `微任务队列`。
 
 5. 如同 1 时的执行原理。
 
-6. script 执行完成，弹出调用栈。此时，若距 2 超过 1 秒钟，那么宏任务队列中有一个匿名函数 a 等待执行，否则，此时宏任务队列为空，微任务队列中有两个 `then` 加入的回调函数等待执行。
+6. `script` 宏任务执行完成，弹出执行上下文栈。此时，微任务队列中有两个 `then` 加入的回调函数等待执行。另外，若距 2 超过 1 秒钟，那么宏任务队列中有一个匿名函数 a 等待执行，否则，此时宏任务队列为空。
 
 7. 在当前宏任务执行完成并弹出调用栈后，开始**清空**因宏任务执行而产生的微任务队列。首先执行 `console.log('I am from 1st ins.then()')`，之后执行 `console.log('I am from 2nd ins.then()')`。
 
 8. 微任务队列清空后，开始调用下一宏任务（即进入下一个事件循环）或等待下一宏任务加入任务队列。此时，在 2 中计时 1 秒后，加入匿名函数 a 至宏任务队列，此时，因之前宏任务 script 执行完成而清空，那么将匿名函数 a 加入调用栈执行，输出 `I am from setTimeout`。
 
-**注**：`JavaScript` 中在某一函数内部调用另一函数时，会暂停（冻结）当前函数的执行，并将当前函数的执行权转移给新的被调用的函数（出自 `JavaScript 语言精粹` P27）。
+**注**：`JavaScript` 中在某一函数内部调用另一函数时，会暂停（冻结）当前函数的执行，并将当前函数的执行权转移给新的被调用的函数（具体解析见[章节 - 执行上下文](js-execution-context/js-execution-context.md)）。
 
 示例总结：
 

@@ -40,7 +40,7 @@ getSomeData().then(res => res, err => console.error(err))
 Promise.resolve('I am resolved').then(res => res) // Promise {<resolved>: "I am resolved"}
 
 /**
- * 1. catch 本身内部没有抛出错误的情况下，返回一个 resolved 的 Promise ，此处 resolve
+ * 1. catch 本身内部没有抛出错误的情况下，返回一个 resolved 的 Promise ，此处 `resolved`
  * 状态表示之前的错误已经被处理
  */
 Promise.reject('I am rejected').catch(err => err) // Promise {<resolved>: "I am rejected"}
@@ -58,9 +58,23 @@ Promise.race([Promise.resolve(true), Promise.reject(false)]).then(res => res)
 Promise.all([Promise.resolve(true), Promise.reject(false)]).catch(err => err)
 ```
 
+- `Promise` 对象的**所有**方法**始终**返回一个 `Promise` 对象。
+
+    - `Promise.resolve()` 返回一个 `resolved` 状态的 `Promise` 对象。
+
+    - `Promise.reject()` 返回一个 `rejected` 状态的 `Promise` 对象。
+
+    - `Promise.all()` 只有当参数数组中的各个 `Promise` 均改变状态时，才会返回一个定型的 `Promise` 对象。否则，为 `pending` 状态的 `Promise`。
+    
+        - 当参数数组中所有 `Promise` 状态均为 `resolved` 时，该方法才返回一个 `resolved` 状态 `Promise` 对象。否则，返回一个 `rejected` 状态的 `Promise` 对象。
+
+    - `Promise.race()` 一旦参数数组中某个 `Promise` 对象的状态变为 `resolved` 或 `rejected`，该方法就会返回一个与该方法同状态的 `Promise`，并且其中包含之前 `Promise` 对象的返回值。
+
+    - 所有原型方法 `then`、`catch`、`finally` 返回的 `Promise` 对象的状态取决与当前方法中函数执行是否有错误抛出。
+
 - `then` 和 `catch` 等函数都只对**前一个** `then` 或 `catch` 返回的 `Promise` 进行**状态判断**。
 
-- `then` 函数默认向后传递一个**之前**的 `Promise` 状态的 `Promise` 对象，即继承之前的 `Promise` 状态。除非在 `then` 内部抛出一个错误，否则 `then` 传递的 `Promise` 状态将**维持不变**。
+- `then` 函数第一参数函数被调用时，默认向后传递一个**之前**的 `Promise` 状态的 `Promise` 对象，即继承之前的 `Promise` 状态。除非在 `then` 内部抛出一个错误，否则 `then` 传递的 `Promise` 状态将**维持不变**。
 
 - `catch` 函数本质是 `then(undefined, onRejected)` 的**语法糖**（[ES8][es8-promise-catch]）。另外，`catch` 本意是抓住（错误），那么逻辑上讲 `catch` 本身就应该返回一个 `resolved` 状态的 `Promise` 对象，其中 `resolve` 状态表示**已经处理**了先前的 `rejected` 的 `Promise` 对象。
 
@@ -68,10 +82,18 @@ Promise.all([Promise.resolve(true), Promise.reject(false)]).catch(err => err)
 
 1. 并不推荐将 `reject` 时触发的函数写为 `then` 的第二参数，推荐做法是使用 `catch()` 函数包裹。这样遵循 `链式调用` 的原则，将 `resolve` 与 `reject` 时调用的回调函数**分离**开来。
 
-2. **不推荐**在 `catch` 中使用 `{ throw new Error(err) }` 语法，如果这样做，那么 `catch` 将返回一个 `rejected` 状态的 `Promise` 对象，那么 `catch` 后续的 `then` 将继承前面的 `catch` 函数返回的 `rejected` 状态的 `Promise` 对象。即最终返回的 `Promise` 对象将是状态为 `rejected` 的 `Promise` 对象。这将导致 `rejected` 触发浏览器相关 `uncaught` 事件，并抛出 `Uncaught (in promise) ...` 错误。
+2. **不推荐**在 `catch` 中使用 `{ throw new Error(err) }` 语法，如果这样做，那么 `catch` 将返回一个 `rejected` 状态的 `Promise` 对象，那么 `catch` 后续的 `then` 将与之前的 `catch` 函数返回的 `rejected` 状态的 `Promise` 对象状态相同（因为没有定义第二参数回调），即都会返回一个 `rejected` 状态的 `Promise` 对象。即最终返回的 `Promise` 对象将是状态为 `rejected` 的 `Promise` 对象。浏览器中存在一个未捕获的 `rejected` 状态的 `Promise` 对象将导致 `rejected` 触发浏览器相关 `uncaught` 事件，并抛出 `Uncaught (in promise) ...` 错误。
 
     - **推荐**在 `catch` 中使用 `console.error(err)` 可达到同样效果。
 
 [es8-promise-catch]:https://www.ecma-international.org/ecma-262/8.0/#sec-promise.prototype.catch
 
 [promise-standard]:https://promisesaplus.com/
+
+# Promise 浏览器支持
+
+在不支持 Promise 原生对象的浏览器中可使用[bluebird][bluebird]（[CDN][bluebird-CDN]）。该库 API 实现与原生完全相同。
+
+[bluebird]:http://bluebirdjs.com/docs/api/new-promise.html
+
+[bluebird-CDN]:http://www.bootcdn.cn/bluebird/
