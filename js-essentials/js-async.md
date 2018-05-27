@@ -59,14 +59,27 @@ console.log('I am 2nd logger in 1st event loop')
 16:34:35.439 I am in other event loop
 16:34:36.874 {/* 返回的 JSON 数据 */}
 ```
-（解析情况 1）
-示例中，`Ajax` 为异步请求（`web API` 属于 `I/O` 类任务源，是宏任务，并在当前调用栈中立即执行），`setTimeout` 中的函数为异步执行。`Ajax` 在请求后弹出调用栈（因为是异步请求，否则同步请求将阻塞接下来的代码执行），**暂存**该请求回调，待请求返回后将回调函数**加入**彼时的事件循环的微任务队列（因为示例中是用 then 包裹的回调函数）。继续执行下文代码，至 `setTimeout` 时，`setTimeout` 作为任务分发器，分发调用 `fn` 的任务，此处**暂存** `fn` 函数，建立一个 10ms 计时器，10ms 后 `fn` 函数**加入**当前宏任务队列等待执行。在之前的 10ms 计时器建立后，`setTimeout` 弹出调用栈，执行下文代码，输出 `2nd logger`。之后当前宏任务执行完成，清空微任务队列，队列清空后，执行下一个宏任务（执行 `fn` 函数，输出 `other event loop`）即开启新一轮事件循环。
+示例中，`Ajax` 为异步请求（`web API` 属于 `I/O` 类任务源，是宏任务，并在当前调用栈中立即执行），`setTimeout` 中的函数为异步执行。`Ajax` 在请求后弹出调用栈（因为是异步请求，否则同步请求将阻塞接下来的代码执行），**暂存**该请求回调，待请求返回后将回调函数**加入**彼时的事件循环的微任务队列（因为示例中是用 then 包裹的回调函数）。继续执行下文代码，至 `setTimeout` 时，`setTimeout` 作为任务分发器，分发调用 `fn` 的任务，此处**暂存** `fn` 函数，建立一个 10ms 计时器，10ms 后 `fn` 函数**加入**当前宏任务队列等待执行。在之前的 10ms 计时器建立后，`setTimeout` 弹出调用栈，执行下文代码，输出 `2nd logger`。
+
+  - 在输出 `2nd logger` 之前数据就已经返回：
+  
+    - 待当前宏任务执行完成（即示例中 `script` 宏任务）后，开始清空微任务队列，清空微任务队列时，将会调用回调函数，输出 `{/* 返回的 JSON 数据 */}` 请求返回的数据，执行下一个宏任务（执行 `fn` 函数，输出 `other event loop`），调用  `fn` 函数即开启新一轮事件循环。
+
+  - 在输出 `2nd logger` 之后数据才返回：
+
+    - 完成当前宏任务后，查询当前微任务队列为空（此时数据未返回，`Promise` 为 `pending` 状态，回调函数**未加入**到微任务队列中（[来源][promise-standard-then]）），执行下一个宏任务（调用 `fn` 函数）输出 `other event loop`，调用 `fn` 函数即开启新一轮事件循环。待之后 `Ajax` 数据返回时，将回调函数插入当前事件循环的微任务队列的最末端。在插入回调函数的当前事件循环中，清空微任务队列时，将会调用该回调函数，输出 `{/* 返回的 JSON 数据 */}` 请求返回的数据。
+
+
 
 关于事件循环的解析见章节 —— [事件循环](js-event-loops.md)
 
 注：JS 中的异步执行仍是单线程的，不是多线程。异步为解决不必要的阻塞而生，此处的异步重点是优化了代码的**执行顺序**。**避免**在执行 JS 代码中**不必要的阻塞**。即异步执行就是单线程执行的一种**优化**解决方案。
 
 注：`HTML5` 中存在 [Web workers][web-works] 支持多线程，但不能访问 `DOM`。
+
+[promise-standard-then]:https://promisesaplus.com/#point-26
+
+[web-works]:https://html.spec.whatwg.org/multipage/workers.html#workers
 
 ## 总结
 
@@ -77,8 +90,6 @@ console.log('I am 2nd logger in 1st event loop')
   - 降低了代码可读性，因为代码并不是按照书写顺序执行
 
   - callback 耦合，不容易模块化
-
-[web-works]:https://html.spec.whatwg.org/multipage/workers.html#workers
 
 # 事件循环 event loop
 
