@@ -16,10 +16,37 @@
 
 ## 任务源
 
-- 宏任务（macrotask）: script（整体代码（[来源][ECMA-Script-records]），即代码执行的基准执行上下文 [execution context](js-execution-context/js-execution-context.md)），setTimeout，setInterval，setImmediate，I/O（可拓展至 Web API，如DOM 操作，用户交互，网络任务，history travelsal（[来源][generic-task-sources]））, **UI rendering**。
+- 宏任务（macrotask）：
+    
+    - script
+    
+        - 整体代码（[来源][ECMA-Script-records]），即代码执行的基准执行上下文（[章节 —— 执行上下文](js-execution-context/js-execution-context.md)）
 
-- 微任务（microtask）: process.nextTick（[Node.js][process.nextTick]），Promise 原型方法（即 `then`、`catch`、`finally`）, Object.observe(已废弃)，MutationObserver（[DOM Standard][mutation-observer]）
-  - **特别注明**：在 `ECMAScript` 中称 `microtask` 为 `jobs`（[来源][ECMAScript-jobs]，其中 [EnqueueJob][EnqueueJob] 即指添加一个 `microtask`）。
+        - 该宏任务的目的在于，将整体代码段（或理解为模块）推入执行上下文栈（`execution context stack`）中。
+        
+            - 执行上下文栈初始会设置 `script` 为 `当前正在运行执行上下文`（`running execution context`），这期间可能因执行而创建新的执行上下文，那么就会依据模块内的代码不断的设置 **当前正在运行执行上下文**（`running execution context`），这样模块内的代码就会依次得以执行（此处主要是章节 —— [执行上下文](js-execution-context/js-execution-context.md) 中 `Running execution context 的更替` 的实际应用）。
+            
+            - 比如设置一些事件监听程序，一些声明，执行一些初始任务。在执行完成该任务时，会建立词法作用域等一系列相关运行参数。
+    
+    - setTimeout，setInterval，setImmediate（服务端 API）
+    
+    - I/O
+    
+        - 可拓展至 Web API，如 DOM 操作，用户交互，网络任务，history traversal（[来源][generic-task-sources]）
+    
+    - **UI rendering**
+
+- 微任务（microtask）:
+
+    - process.nextTick（[Node.js][process.nextTick]）
+    
+    - Promise 原型方法（即 `then`、`catch`、`finally`）中被调用的回调函数
+
+    - MutationObserver（[DOM Standard][mutation-observer]）
+
+    - Object.observe(已废弃)
+
+    - **特别注明**：在 `ECMAScript` 中称 `microtask` 为 `jobs`（[来源][ECMAScript-jobs]，其中 [EnqueueJob][EnqueueJob] 即指添加一个 `microtask`）。
 
 `macrotask` 和 `microtask` 中的每一项都称之为一个 **任务源**。
 
