@@ -30,6 +30,8 @@
 
 * [Promise 对象](js-essentials/js-promise.md)
 
+* [异步函数 async/await](js-essentials/js-async-function.md)
+
 ----
 
 * [模块化 modules](js-essentials/js-modules.md)

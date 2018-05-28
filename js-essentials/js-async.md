@@ -100,7 +100,7 @@ console.log('I am 2nd logger in 1st event loop')
 
 # 事件循环 event loop
 
-`JavaScript` 中实现异步的具体解决方案就是 `event loop`。
+`JavaScript` 中实现异步执行的具体解决方案就是 `event loop`。
 
 对于事件循环的解析见章节 [event loop](js-event-loops.md)。
 
@@ -188,8 +188,14 @@ $.when(wh)
 
 # Promise 基本原理与使用
 
-章节 —— [Promise 对象](js-promise.md)
+章节 - [Promise 对象](js-promise.md)
 
-# Promise 的补充 —— async/await
+# Promise 对象的再封装 —— async/await
+
+章节 - [异步函数](js-async-function.md)
 
 # 总结当前 JS 解决异步的方案
+
+- Promise
+
+- async/await

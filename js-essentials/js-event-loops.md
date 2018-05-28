@@ -18,7 +18,7 @@
 
 - 宏任务（macrotask）：
     
-    - script
+    1. script
     
         - 整体代码（[来源][ECMA-Script-records]），即代码执行的基准执行上下文（[章节 —— 执行上下文](js-execution-context/js-execution-context.md)）
 
@@ -28,29 +28,47 @@
             
             - 比如设置一些事件监听程序，一些声明，执行一些初始任务。在执行完成该任务时，会建立词法作用域等一系列相关运行参数。
     
-    - setTimeout，setInterval，setImmediate（服务端 API）
+    2. setTimeout，setInterval，setImmediate（服务端 API）
     
-    - I/O
+    3. I/O
     
-        - 可拓展至 Web API，如 DOM 操作，用户交互，网络任务，history traversal（[来源][generic-task-sources]）
+        - 可拓展至 Web API（[来源][generic-task-sources]）：
+        
+            1. DOM 操作
+
+            2. 网络任务
+
+                - Ajax 请求
+            
+            3. history traversal
+
+                - history.back()
+            
+            4. 用户交互
+
+                - 其中包括常见 DOM2（`addEventListener`）和 DOM0（`onHandle`）级**事件监听回调函数**。如 `click` 事件回调函数等。
+
+                - 特别地，事件需要冒泡到 `document` 对象之后并且事件回调执行**完成后**，才算该宏任务执行完成。否则一直存在于执行上下文栈中，等待事件冒泡并事件回调完成（来源：Jake Archibald blog - [level 1 boss fight][jake-blog]）。
     
     - **UI rendering**
 
 - 微任务（microtask）:
 
-    - process.nextTick（[Node.js][process.nextTick]）
+    1. process.nextTick（[Node.js][process.nextTick]）
     
-    - Promise 原型方法（即 `then`、`catch`、`finally`）中被调用的回调函数
+    2. Promise 原型方法（即 `then`、`catch`、`finally`）中被调用的回调函数
 
-    - MutationObserver（[DOM Standard][mutation-observer]）
+    3. MutationObserver（[DOM Standard][mutation-observer]）
 
-    - Object.observe(已废弃)
+        - 用于监听节点是否发生变化
 
-    - **特别注明**：在 `ECMAScript` 中称 `microtask` 为 `jobs`（[来源][ECMAScript-jobs]，其中 [EnqueueJob][EnqueueJob] 即指添加一个 `microtask`）。
+    4. Object.observe(已废弃)
+
+- **特别注明**：在 `ECMAScript` 中称 `microtask` 为 `jobs`（[来源][ECMAScript-jobs]，其中 [EnqueueJob][EnqueueJob] 即指添加一个 `microtask`）。
 
 `macrotask` 和 `microtask` 中的每一项都称之为一个 **任务源**。
 
-以上分类中，每一项执行时均占用当前调用栈（线程）。如，可理解为浏览器渲染线程与 JS 执行共用一个线程。
+以上分类中，每一项执行时均占用`当前正在运行执行上下文`（`running execution context`）（线程）。如，可理解为浏览器渲染线程与 JS 执行共用一个线程。
 
 **依据标准拓展**：
 
@@ -62,9 +80,9 @@
 
     - compound microtask：
     
-        - MutationObserver（[DOM Standard - 4.3.2 步骤 5][mutation-observer]）
+        1. MutationObserver（[DOM Standard - 4.3.2 步骤 5][mutation-observer]）
 
-        - process.nextTick（Only for [Node.js][process.nextTick]）
+        2. process.nextTick（Only for [Node.js][process.nextTick]）
 
             - > all callbacks passed to process.nextTick() will be resolved before the event loop continues.
 
@@ -84,6 +102,8 @@
 
 [mutation-observer]:https://dom.spec.whatwg.org/#queue-a-mutation-record
 
+[jake-blog]:https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+
 [process.nextTick]:https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#process-nexttick
 
 ## 任务队列 task queue
@@ -102,11 +122,19 @@
 
 - 每个事件循环都有一个 `已执行 microtask 检查点标志`（`performing a microtask checkpoint flag`）（初始值一定为 false）表示已经执行了 `microtask` 检查点，用于阻止执行 `microtask checkpoint` 算法的可重入调用。
     
-    - 可重入调用（[reentrant invocation][reentrant-invocation]）是指，算法在执行过程中意外中断时，在当前调用未完成的情况下被再次从头开始执行。一旦可重入执行完成，上一次被中断的调用将会恢复执行。
+    1. 可重入调用（[reentrant invocation][reentrant-invocation]）是指，算法在执行过程中意外中断时，在当前调用未完成的情况下被再次从头开始执行。一旦可重入执行完成，上一次被中断的调用将会恢复执行。
+
+    2. 设置该检查点的原因是：
+
+        - 执行微任务时，可能会调用其他回调函数，当其他回调函数时，并在弹出执行上下文栈时，会断言当前执行上下文栈是否为空，若为空时，那么就会再一次执行 `microtask checkpoint`（来源：[perform a microtask checkpoint - step 2.3][microtask-checkpoint]、[clean up after running script][clean-up-after-running-script]），若没有设置检查点执行标志的话就会再次进入 `microtask queue` 重复执行 `microtask`。
 
 [macro-task-queue]:https://www.w3.org/TR/html5/webappapis.html#microtask
 
 [reentrant-invocation]:https://en.wikipedia.org/wiki/Reentrancy_(computing)
+
+[microtask-checkpoint]:https://html.spec.whatwg.org/multipage/webappapis.html#perform-a-microtask-checkpoint
+
+[clean-up-after-running-script]:https://html.spec.whatwg.org/multipage/webappapis.html#clean-up-after-running-script
 
 （[来源][processing-model]）
 
