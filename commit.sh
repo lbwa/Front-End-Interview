@@ -13,6 +13,7 @@ echo '-- >> 分支 master 提交完成 << --'
 # git push -u origin gh-pages
 # git checkout master
 
+gitbook build
 git subtree push --prefix _book origin gh-pages
 echo '-- >> 分支 gh-pages 部署完成 << --'
 
