@@ -14,7 +14,9 @@ echo '-- >> 分支 master 提交完成 << --'
 # git checkout master
 
 gitbook build
+cp -r _book docs
 git subtree push --prefix _book origin gh-pages
+rm -rf docs
 echo '-- >> 分支 gh-pages 部署完成 << --'
 
 # 于 git bash 中输入 ./deploy.sh 'info about commit'
