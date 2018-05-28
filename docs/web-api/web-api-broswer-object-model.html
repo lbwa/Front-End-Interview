@@ -1,0 +1,679 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>浏览器对象模型 BOM · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="web-api-event.html" />
+    
+    
+    <link rel="prev" href="web-api-document-object-model.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/lbwa" target="_blank" class="custom-link">My Github</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    简介 introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础语法和规则</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../js-essentials/js-variable.html">
+            
+                <a href="../js-essentials/js-variable.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    变量 variable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../js-essentials/js-hoisting.html">
+            
+                <a href="../js-essentials/js-hoisting.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    变量提升 hoisting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../js-essentials/js-lexical-environments.html">
+            
+                <a href="../js-essentials/js-lexical-environments.html">
+            
+                    
+                        <b>2.3.</b>
+                    
+                    作用域 lexical environments
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../js-essentials/js-prototype.html">
+            
+                <a href="../js-essentials/js-prototype.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    原型与原型链 prototype (chain)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../js-essentials/js-prototype-application.html">
+            
+                <a href="../js-essentials/js-prototype-application.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    原型链实际应用 prototype application
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../js-essentials/js-object-this.html">
+            
+                <a href="../js-essentials/js-object-this.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    函数 this 对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../js-essentials/js-execution-context/js-execution-context.html">
+            
+                <a href="../js-essentials/js-execution-context/js-execution-context.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    执行上下文 execution context
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../js-essentials/js-async.html">
+            
+                <a href="../js-essentials/js-async.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    异步执行 async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../js-essentials/js-event-loops.html">
+            
+                <a href="../js-essentials/js-event-loops.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    事件循环 event loops
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../js-essentials/js-promise.html">
+            
+                <a href="../js-essentials/js-promise.html">
+            
+                    
+                        <b>5.3.</b>
+                    
+                    Promise 对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../js-essentials/js-async-function.html">
+            
+                <a href="../js-essentials/js-async-function.html">
+            
+                    
+                        <b>5.4.</b>
+                    
+                    异步函数 async/await
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../js-essentials/js-modules.html">
+            
+                <a href="../js-essentials/js-modules.html">
+            
+                    
+                        <b>6.1.</b>
+                    
+                    模块化 modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../js-essentials/js-class.html">
+            
+                <a href="../js-essentials/js-class.html">
+            
+                    
+                        <b>6.2.</b>
+                    
+                    类 class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="../js-essentials/js-common-functions.html">
+            
+                <a href="../js-essentials/js-common-functions.html">
+            
+                    
+                        <b>6.3.</b>
+                    
+                    ES6+ 常用功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Web API</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="web-api-document-object-model.html">
+            
+                <a href="web-api-document-object-model.html">
+            
+                    
+                        <b>7.1.</b>
+                    
+                    文档对象模型 DOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="7.2" data-path="web-api-broswer-object-model.html">
+            
+                <a href="web-api-broswer-object-model.html">
+            
+                    
+                        <b>7.2.</b>
+                    
+                    浏览器对象模型 BOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="web-api-event.html">
+            
+                <a href="web-api-event.html">
+            
+                    
+                        <b>7.3.</b>
+                    
+                    事件绑定 event
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="web-api-ajax/web-api-ajax.html">
+            
+                <a href="web-api-ajax/web-api-ajax.html">
+            
+                    
+                        <b>7.4.</b>
+                    
+                    Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="web-api-storage.html">
+            
+                <a href="web-api-storage.html">
+            
+                    
+                        <b>7.5.</b>
+                    
+                    客户端存储 storage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">客户端运行环境</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../browser/browser-loading.html">
+            
+                <a href="../browser/browser-loading.html">
+            
+                    
+                        <b>8.1.</b>
+                    
+                    页面加载原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="../browser/browser-loading-sample.html">
+            
+                <a href="../browser/browser-loading-sample.html">
+            
+                    
+                        <b>8.2.</b>
+                    
+                    页面加载原理的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="../browser/browser-optimization.html">
+            
+                <a href="../browser/browser-optimization.html">
+            
+                    
+                        <b>8.3.</b>
+                    
+                    web 性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">项目相关</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../project-experience/project-launch.html">
+            
+                <a href="../project-experience/project-launch.html">
+            
+                    
+                        <b>9.1.</b>
+                    
+                    上线与回滚流程要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >浏览器对象模型 BOM</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="bom">BOM</h1>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x5BA2;&#x6237;&#x7AEF;&#x4FE1;&#x606F;&#x5BF9;&#x8C61;</span>
+navigator
+
+<span class="hljs-comment">// &#x5C4F;&#x5E55;&#x4FE1;&#x606F;&#x5BF9;&#x8C61;</span>
+screen
+
+<span class="hljs-comment">/**
+ * &#x5730;&#x5740;&#x680F; url &#x4FE1;&#x606F;&#x5BF9;&#x8C61;
+ * &#x5B9E;&#x9645;&#x5E94;&#x7528;&#xFF1A;Vue router &#x7684;&#x8DEF;&#x7531;&#x4FE1;&#x606F;&#x5BF9;&#x8C61; vm.$route &#x548C;&#x8DEF;&#x7531;&#x5B9E;&#x4F8B; vm.$router &#x7684;&#x5E94;&#x7528;
+ * vm.$route.path &#x5BF9;&#x5E94; location.pathname
+ * vm.$route.query &#x5BF9;&#x5E94; location.search
+ * vm.$route.hash &#x5BF9;&#x5E94; location.hash
+ * vm.$route.fullPath &#x5BF9;&#x5E94; location.href
+ * vm.$router.push(path) &#x5BF9;&#x5E94; location.assign(path)
+ * vm.$router.replace(path) &#x5BF9;&#x5E94; location.replace(path)
+ */</span>
+location
+location.href <span class="hljs-comment">// &#x5168; url</span>
+location.protocol <span class="hljs-comment">// &#x5F53;&#x524D; url &#x534F;&#x8BAE;&#xFF0C;&#x5982; https:&#xFF0C;http:&#xFF0C;file:</span>
+location.host <span class="hljs-comment">// &#x57DF;&#x540D;&#x4E3B;&#x673A;</span>
+location.hostname <span class="hljs-comment">// location.hostname + location.port &#x7B49;&#x4E8E; location.host</span>
+location.port <span class="hljs-comment">// url &#x4E2D;&#x7684;&#x7AEF;&#x53E3;</span>
+location.pathname <span class="hljs-comment">// &#x8DEF;&#x5F84;&#xFF0C;&#x5373; location.host &#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span>
+location.search <span class="hljs-comment">// &#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5373; ? &#x540E;&#x5B57;&#x7B26;&#x4E32;</span>
+location.hash <span class="hljs-comment">// &#x8DEF;&#x7531; hash &#x503C;&#xFF0C;&#x5373; # &#x540E;&#x5B57;&#x7B26;&#x4E32;</span>
+
+<span class="hljs-comment">// &#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x4FE1;&#x606F;&#x5BF9;&#x8C61;&#xFF08;Vue router &#x7684;&#x8DEF;&#x7531;&#x5B9E;&#x4F8B; vm.$router &#x5E94;&#x7528;&#xFF0C;&#x5982; vm.$router.back()&#xFF0C;vm.$router.go(n)&#xFF09;</span>
+history
+history.go(n)
+history.back()
+history.forward()
+</code></pre>
+<h2 id="&#x6D4F;&#x89C8;&#x5668;&#x7C7B;&#x578B;&#x68C0;&#x6D4B;">&#x6D4F;&#x89C8;&#x5668;&#x7C7B;&#x578B;&#x68C0;&#x6D4B;</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> ua = navigator.userAgent
+<span class="hljs-keyword">const</span> isChrome = ua.indexOf(<span class="hljs-string">&apos;Chrome&apos;</span>)
+</code></pre>
+<p>&#x539F;&#x5219;&#xFF1A;&#x6839;&#x636E;&#x76EE;&#x6807;&#x6D4F;&#x89C8;&#x5668;&#x7684; ua &#x5B57;&#x6BB5;&#x5236;&#x5B9A;&#x7279;&#x6B8A;&#x7684;&#x8FC7;&#x6EE4;&#x5668;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="web-api-document-object-model.html" class="navigation navigation-prev " aria-label="Previous page: 文档对象模型 DOM">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="web-api-event.html" class="navigation navigation-next " aria-label="Next page: 事件绑定 event">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"浏览器对象模型 BOM","level":"7.2","depth":1,"next":{"title":"事件绑定 event","level":"7.3","depth":1,"path":"web-api/web-api-event.md","ref":"web-api/web-api-event.md","articles":[]},"previous":{"title":"文档对象模型 DOM","level":"7.1","depth":1,"path":"web-api/web-api-document-object-model.md","ref":"web-api/web-api-document-object-model.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sidebar":{"My Github":"https://github.com/lbwa"}},"gitbook":"*"},"file":{"path":"web-api/web-api-broswer-object-model.md","mtime":"2018-05-28T14:00:34.448Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-28T14:14:59.909Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

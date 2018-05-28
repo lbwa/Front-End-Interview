@@ -1,0 +1,652 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>上线与回滚流程要点 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../browser/browser-optimization.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/lbwa" target="_blank" class="custom-link">My Github</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    简介 introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础语法和规则</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../js-essentials/js-variable.html">
+            
+                <a href="../js-essentials/js-variable.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    变量 variable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../js-essentials/js-hoisting.html">
+            
+                <a href="../js-essentials/js-hoisting.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    变量提升 hoisting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../js-essentials/js-lexical-environments.html">
+            
+                <a href="../js-essentials/js-lexical-environments.html">
+            
+                    
+                        <b>2.3.</b>
+                    
+                    作用域 lexical environments
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../js-essentials/js-prototype.html">
+            
+                <a href="../js-essentials/js-prototype.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    原型与原型链 prototype (chain)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../js-essentials/js-prototype-application.html">
+            
+                <a href="../js-essentials/js-prototype-application.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    原型链实际应用 prototype application
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../js-essentials/js-object-this.html">
+            
+                <a href="../js-essentials/js-object-this.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    函数 this 对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../js-essentials/js-execution-context/js-execution-context.html">
+            
+                <a href="../js-essentials/js-execution-context/js-execution-context.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    执行上下文 execution context
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../js-essentials/js-async.html">
+            
+                <a href="../js-essentials/js-async.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    异步执行 async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../js-essentials/js-event-loops.html">
+            
+                <a href="../js-essentials/js-event-loops.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    事件循环 event loops
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../js-essentials/js-promise.html">
+            
+                <a href="../js-essentials/js-promise.html">
+            
+                    
+                        <b>5.3.</b>
+                    
+                    Promise 对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../js-essentials/js-async-function.html">
+            
+                <a href="../js-essentials/js-async-function.html">
+            
+                    
+                        <b>5.4.</b>
+                    
+                    异步函数 async/await
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../js-essentials/js-modules.html">
+            
+                <a href="../js-essentials/js-modules.html">
+            
+                    
+                        <b>6.1.</b>
+                    
+                    模块化 modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../js-essentials/js-class.html">
+            
+                <a href="../js-essentials/js-class.html">
+            
+                    
+                        <b>6.2.</b>
+                    
+                    类 class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="../js-essentials/js-common-functions.html">
+            
+                <a href="../js-essentials/js-common-functions.html">
+            
+                    
+                        <b>6.3.</b>
+                    
+                    ES6+ 常用功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Web API</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../web-api/web-api-document-object-model.html">
+            
+                <a href="../web-api/web-api-document-object-model.html">
+            
+                    
+                        <b>7.1.</b>
+                    
+                    文档对象模型 DOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../web-api/web-api-broswer-object-model.html">
+            
+                <a href="../web-api/web-api-broswer-object-model.html">
+            
+                    
+                        <b>7.2.</b>
+                    
+                    浏览器对象模型 BOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="../web-api/web-api-event.html">
+            
+                <a href="../web-api/web-api-event.html">
+            
+                    
+                        <b>7.3.</b>
+                    
+                    事件绑定 event
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="../web-api/web-api-ajax/web-api-ajax.html">
+            
+                <a href="../web-api/web-api-ajax/web-api-ajax.html">
+            
+                    
+                        <b>7.4.</b>
+                    
+                    Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="../web-api/web-api-storage.html">
+            
+                <a href="../web-api/web-api-storage.html">
+            
+                    
+                        <b>7.5.</b>
+                    
+                    客户端存储 storage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">客户端运行环境</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../browser/browser-loading.html">
+            
+                <a href="../browser/browser-loading.html">
+            
+                    
+                        <b>8.1.</b>
+                    
+                    页面加载原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="../browser/browser-loading-sample.html">
+            
+                <a href="../browser/browser-loading-sample.html">
+            
+                    
+                        <b>8.2.</b>
+                    
+                    页面加载原理的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="../browser/browser-optimization.html">
+            
+                <a href="../browser/browser-optimization.html">
+            
+                    
+                        <b>8.3.</b>
+                    
+                    web 性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">项目相关</li>
+        
+        
+    
+        <li class="chapter active" data-level="9.1" data-path="project-launch.html">
+            
+                <a href="project-launch.html">
+            
+                    
+                        <b>9.1.</b>
+                    
+                    上线与回滚流程要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >上线与回滚流程要点</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x4E0A;&#x7EBF;&#x6D41;&#x7A0B;&#x8981;&#x70B9;">&#x4E0A;&#x7EBF;&#x6D41;&#x7A0B;&#x8981;&#x70B9;</h1>
+<p>&#x4E00;&#x5207;&#x7684;&#x524D;&#x671F;&#x5F00;&#x53D1;&#x5DE5;&#x4F5C;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x6700;&#x540E;&#x7684;&#x9879;&#x76EE;&#x4E0A;&#x7EBF;&#xFF0C;&#x53EA;&#x6709;&#x53C2;&#x4E0E;&#x9879;&#x76EE;&#x4E0A;&#x7EBF;&#xFF08;&#x56DE;&#x6EDA;&#xFF09;&#x624D;&#x80FD;<strong>&#x771F;&#x6B63;</strong>&#x7684;&#x8FDB;&#x5165;<strong>&#x6838;&#x5FC3;</strong>&#x5F00;&#x53D1;&#x3002;</p>
+<ul>
+<li><p>&#x5C06;&#x6D4B;&#x8BD5;&#x5B8C;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x63D0;&#x4EA4;&#x5230; <code>git</code> &#x7248;&#x672C;&#x5E93;&#x7684; <code>master</code> &#x5206;&#x652F;&#x3002;</p>
+</li>
+<li><p>&#x5C06;&#x5F53;&#x524D;&#x670D;&#x52A1;&#x5668;&#x7684;&#x4EE3;&#x7801;&#x5168;&#x90E8;&#x6253;&#x5305;&#x5E76;&#x8BB0;&#x5F55;&#x7248;&#x672C;&#x597D;&#xFF0C;&#x5907;&#x4EFD;&#x3002;</p>
+</li>
+<li><p>&#x5C06; <code>master</code> &#x5206;&#x652F;&#x7684;&#x4EE3;&#x7801;&#x63D0;&#x4EA4;&#x8986;&#x76D6;&#x5230;&#x7EBF;&#x4E0A;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x751F;&#x6210;&#x65B0;&#x7248;&#x672C;&#x53F7;&#x3002;</p>
+</li>
+</ul>
+<h1 id="&#x56DE;&#x6EDA;&#x6D41;&#x7A0B;&#x8981;&#x70B9;">&#x56DE;&#x6EDA;&#x6D41;&#x7A0B;&#x8981;&#x70B9;</h1>
+<ul>
+<li><p>&#x5C06;&#x5F53;&#x524D;&#x670D;&#x52A1;&#x5668;&#x7684;&#x4EE3;&#x7801;&#x6253;&#x5305;&#x5E76;&#x8BB0;&#x5F55;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x5907;&#x4EFD;</p>
+</li>
+<li><p>&#x5C06;&#x5907;&#x4EFD;&#x7684;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x53F7;&#x89E3;&#x538B;&#xFF0C;&#x8986;&#x76D6;&#x5230;&#x7EBF;&#x4E0A;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5E76;&#x751F;&#x6210;&#x65B0;&#x7684;&#x7248;&#x672C;&#x53F7;</p>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../browser/browser-optimization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: web 性能优化">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"上线与回滚流程要点","level":"9.1","depth":1,"previous":{"title":"web 性能优化","level":"8.3","depth":1,"path":"browser/browser-optimization.md","ref":"browser/browser-optimization.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sidebar":{"My Github":"https://github.com/lbwa"}},"gitbook":"*"},"file":{"path":"project-experience/project-launch.md","mtime":"2018-05-28T14:00:34.417Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-28T14:14:59.909Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

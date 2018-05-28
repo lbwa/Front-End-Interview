@@ -15,7 +15,7 @@ echo '-- >> 分支 master 提交完成 << --'
 
 gitbook build
 cp -r _book docs
-git subtree push --prefix docs origin gh-pages
+git subtree push --prefix _book origin gh-pages
 rm -rf docs
 echo '-- >> 分支 gh-pages 部署完成 << --'
 
