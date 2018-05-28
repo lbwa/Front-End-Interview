@@ -159,7 +159,6 @@ function waitHandle () {
     setTimeout(task, 1000)
 
     // 不直接返回 deferred 对象是为了 开闭原则，保证外部不能调用 deferred.resolve 或 deferred.reject
-    // 此处可理解为 Promise 对象中的状态一旦改变就无法再次修改。
     return deferred.promise() // 返回一个 promise 对象（标准中的 Promise 对象的前身）
   }
 
@@ -181,7 +180,7 @@ $.when(wh)
 
     - `Deferred` 对象可在模块外部不仅能被动监听，还能再次被主动修改状态（违背开闭原则）。
 
-    - `Promise` 对象只能被动监听，不能主动修改（用于开闭原则开发）。
+    - `Promise` 对象只能被动监听，不能主动修改（遵循开闭原则）。
 
         - 演变出 `ECMAScript` 标准中的 `Promise` 对象，`Promise` 对象的实例中的状态一旦由 `pending` 转变为 `resolved` 或 `rejected` 后，就不能再被改变了。
 

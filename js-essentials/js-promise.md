@@ -76,7 +76,7 @@ Promise.all([Promise.resolve(true), Promise.reject(false)]).catch(err => err)
 
 - `then` 函数第一参数函数被调用时，默认向后传递一个**之前**的 `Promise` 状态的 `Promise` 对象，即继承之前的 `Promise` 状态。除非在 `then` 内部抛出一个错误，否则 `then` 传递的 `Promise` 状态将**维持不变**。
 
-- `catch` 函数本质是 `then(undefined, onRejected)` 的**语法糖**（[ES8][es8-promise-catch]）。另外，`catch` 本意是抓住（错误），那么逻辑上讲 `catch` 本身就应该返回一个 `resolved` 状态的 `Promise` 对象，其中 `resolve` 状态表示**已经处理**了先前的 `rejected` 的 `Promise` 对象。
+- `catch` 函数本质是 `then(undefined, onRejected)` 的**语法糖**（[ES8][es8-promise-catch]）。另外，`catch` 本意是抓住（错误），那么逻辑上讲 `catch` 本身就应该返回一个 `resolved` 状态的 `Promise` 对象，其中 `resolved` 状态表示**已经处理**了先前的 `rejected` 的 `Promise` 对象。
 
 **技巧**：
 
