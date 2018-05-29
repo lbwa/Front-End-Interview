@@ -42,7 +42,7 @@
 
 ## 进阶
 
-* [Virtual DOM](advance/virtual-dom.md)
+* [Virtual DOM](advance/adv-virtual-dom.md)
 
 ## Web API
 
