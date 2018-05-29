@@ -40,6 +40,10 @@
 
 * [ES6+ 常用功能](js-essentials/js-common-functions.md)
 
+## 进阶
+
+* [Virtual DOM](advance/virtual-dom.md)
+
 ## Web API
 
 * [文档对象模型 DOM](web-api/web-api-document-object-model.md)
