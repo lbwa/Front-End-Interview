@@ -1,6 +1,10 @@
 # Front-End Interview
 
+👉[在线浏览][online]
+
 本存储库主要是梳理和强化自己在前端学习历程的 `JavaScript` 基础知识。
+
+[online]:https://lbwa.github.io/Front-End-Interview/
 
 # 思考原则
 
