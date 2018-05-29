@@ -1,6 +1,6 @@
 # virtual DOM
 
-一般将 `virtual DOM` 简写为 `vdom`。`vdom` 的目的是以最优解去更新 `DOM`，那么就要保证更新节点的查询次数最少（`vnode`更新节点不需要查询），更新的影响范围最小（依靠 `vnode.elm` 精确更新节点）。
+一般将 `virtual DOM` 简写为 `vdom`。`vdom` 的目的是以最优解去更新 `DOM`，那么就要保证更新节点的查询次数最少（`vnode`更新节点不需要查询），更新的影响范围最小（依靠 `vnode.elm` 精确定位节点）。
 
 # vdom 定义
 

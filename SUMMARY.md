@@ -44,6 +44,8 @@
 
 * [Virtual DOM](advance/adv-virtual-dom.md)
 
+* [MVVM 架构模型](advance/adv-mvvm.md)
+
 ## Web API
 
 * [文档对象模型 DOM](web-api/web-api-document-object-model.md)
