@@ -44,7 +44,7 @@
 
 * [Virtual DOM](advance/adv-virtual-dom.md)
 
-* [MVVM 架构模型](advance/adv-mvvm.md)
+* [MVVM 架构模式](advance/adv-mvvm/adv-mvvm.md)
 
 ## Web API
 
