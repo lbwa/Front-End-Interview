@@ -103,11 +103,12 @@ for (let key in obj) {} // 包含原型链中可枚举属性
 Object.keys(obj) // 只枚举实例自身可枚举属性，不包含原型链中可枚举属性
 
 Object.getOwnPropertyNames(obj) // 只枚举实例自身所有属性，包含不可枚举属性
+Reflect.ownKeys(obj) // Object.getOwnPropertyNames(obj) + Object.getOwnPropertySymbols(obj)
 
 obj.hasOwnProperty('name') // 检测 name 属性是否是 obj 对象的实例属性
 ```
 
-在默认情况下，除使用 `Object.defineProperty` 特别指定属性描述符外，开发人员定义的属性都是可枚举属性。
+在默认情况下，除使用 `Object.defineProperty`（或 `Reflect.defineProperty`） 特别指定属性描述符外，开发人员定义的属性都是可枚举属性。
 
 `Object.keys(obj)` 和 `Object.getOwnPropertyNames(obj)` 返回实例键名组成的数组。
 
