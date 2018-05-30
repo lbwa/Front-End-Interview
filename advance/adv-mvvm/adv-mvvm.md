@@ -1,6 +1,18 @@
 # 对 MVVM 的理解
 
-1. `MVVM` 框架（`Model-View-ViewModel`（[wiki][wiki-mvvm]））三要素
+1. 定义
+
+    - `Model` 数据模型，一般是 `JavaScript` 对象，用于存储业务数据。
+
+    - `ViewModel` 视图模型，如 `Vue.js` 。其中包含视图展示逻辑、数据状态等一系列必要因素。
+
+    - `View` 视图层，即 `DOM` 树。
+
+        ![mvvm-intro](mvvm.png)
+
+    注：如在 `Vue.js` 中，通过 `DOM listener` 监听 `View` 变化来通知 `ViewModel` 更新 `Model`，`Model` 通过数据绑定来通知 `ViewModel` 操作 `DOM`。
+
+2. `MVVM` 框架（`Model-View-ViewModel`（[wiki][wiki-mvvm]））三要素
 
     - 响应式（[演示][vue-reactive]）
 
@@ -12,11 +24,7 @@
 
         - `vdom` 借由 `diff` 算法可以在操作 `DOM` 时带来极低的性能消耗（原因：章节 - [Virtual DOM](../adv-virtual-dom.md)）。
 
-        ![mvvm-intro](mvvm.png)
-
-        注：如在 `Vue.js` 中，`View` 通过事件监听来实现通知 `ViewModel` 更新，`Model` 通过数据绑定来通知 `ViewModel` 操作 `DOM`。
-
-2. 传统 JS 库（如 `jQuery`）与 `MVVM` 框架的差异
+3. 传统 JS 库（如 `jQuery`）与 `MVVM` 框架的差异
 
     - 使用传统 JS 框架或原生 JS 开发时：
 
