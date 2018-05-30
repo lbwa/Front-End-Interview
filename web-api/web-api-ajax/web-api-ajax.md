@@ -57,11 +57,11 @@ xhr.send(null)
 
 ![Set-CORS1][Set-CORS1]
 
-[No-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/No-CORS.PNG
+[No-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/web-api/web-api-ajax/No-CORS.PNG
 
-[Set-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/Set-CORS.PNG
+[Set-CORS]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/web-api/web-api-ajax/Set-CORS.PNG
 
-[Set-CORS1]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/js-essentials/web-api-ajax/Set-CORS1.PNG
+[Set-CORS1]:https://raw.githubusercontent.com/lbwa/Front-End-Interview/master/web-api/web-api-ajax/Set-CORS1.PNG
 
 由上图可看出，浏览器在跨域请求后，通过验证 `Access-Control-Allow-Origin` 得到允许当前域（`http://localhost:8889`）跨域请求目标服务器（`https://api.github.com`）。
 
