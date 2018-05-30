@@ -10,7 +10,7 @@
 
     - 渲染（`ViewModel` 中的视图展示逻辑）
 
-        - `vdom` 借由 `diff` 算法可以在操作 `DOM` 时带来极低的性能消耗（原因：章节 - [Virtual DOM](adv-virtual-dom.md)）。
+        - `vdom` 借由 `diff` 算法可以在操作 `DOM` 时带来极低的性能消耗（原因：章节 - [Virtual DOM](../adv-virtual-dom.md)）。
 
         ![mvvm-intro](mvvm.png)
 
@@ -43,6 +43,8 @@
 （以 `Vue.js` 为例）
 
 ## Vue.js 中响应式原理
+
+（[演示][vue-reactive]）
 
 ## Vue.js 如何解析模板
 
