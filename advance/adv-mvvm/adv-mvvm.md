@@ -10,7 +10,7 @@
 
         ![mvvm-intro](mvvm.png)
 
-    注：如在 `Vue.js` 中，通过 `DOM listener` 监听 `View` 变化来通知 `ViewModel` 更新 `Model`，`Model` 通过数据绑定来通知 `ViewModel` 操作 `DOM`。
+    注：如在 `Vue.js` 中，通过 `DOM listener` 监听 `View` 变化来通知 `ViewModel` 更新 `Model`，`Model` 通过 `数据绑定`（`Data binding`）来通知 `ViewModel` 操作 `DOM`。
 
 2. `MVVM` 框架（`Model-View-ViewModel`（[wiki][wiki-mvvm]））三要素
 
@@ -21,6 +21,8 @@
     - 模板引擎
 
     - 渲染（`ViewModel` 中的视图展示逻辑）
+
+        - `ViewModel` 中的视图展示逻辑通过 `render` 函数来实现，其中 `render` 函数的**核心**是 `vdom`。
 
         - `vdom` 借由 `diff` 算法可以在操作 `DOM` 时带来极低的性能消耗（原因：章节 - [Virtual DOM](../adv-virtual-dom.md)）。
 
@@ -50,10 +52,166 @@
 
 （以 `Vue.js` 为例）
 
-## Vue.js 中响应式原理
+## 1. Vue.js 中响应式原理
 
-（[演示][vue-reactive]）
+（👉Repo: [演示][vue-reactive]）
 
-## Vue.js 如何解析模板
+## 2. Vue.js 如何解析模板
 
-## Vue.js 核心原理 —— 流程实现
+1. 模板
+
+    1. 本质：字符串
+
+    2. 内含**逻辑**语句，如 `v-if`、`v-for` 等语句
+    
+    3. 对比静态的 `HTML`，模板是**动态**的。
+
+    4. 最终的编译结果是 `HTML`。
+
+        - 模板必须转换为 JS 代码实现模板中的逻辑语句。
+        
+            - 前端三大语言中只有 JS 具有逻辑实现，即图灵完备语言。
+
+        - 三大语言中只有 JS （`render` 函数）能实现转换为 `HTML`。
+2. `render` 函数
+
+    1. 模板中的所有信息在 `render` 函数中均有体现
+
+         - 模板如下：
+        ```html
+        <div class="app">
+          <p>{{name}}</p>
+        </div>
+        ```
+        - `render` 函数体如下：
+        ```js
+        // with 用于指定 with 代码块中的上一级作用域，在查询当前作用域中未声明变量的声明时，起作用
+        // this 指向 vue 实例 vm
+        with(this) {
+          // _c 即 vm._c，调用 createElement()，即创建 vnode
+          return _c(
+            'div',
+            {
+              attrs: {'id': 'app'}
+            },
+            [
+              // name 即 vm.name 即 vm._data.name
+              // vm._v 即 createTextVNode(val)，创建 文本 vnode
+              // vm._s 即 toString(val)，转换变量 name 为字符串
+              _c('p', [_v(_s(name))])
+            ]
+          )
+        }
+        ```
+        注：暂只关心设计理念，模板转换为 JS 代码（`render` 函数）的过程属于工具化细节，暂不过多纠结。
+    
+    2. `Vue.js` 指令实现
+
+        ```html
+        <input v-model="msg" @keyup.enter="submit" type="text" id="inputPanel">
+        ```
+
+        ```js
+        // 拦截 Vue.js 源码中 `code.render` 可以得到当前模板转换后的 render 函数
+        with (this) { // this 即为 vm
+          return _c(
+            'input',
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  // v-model 绑定的值
+                  value: (msg),
+                  expression: "msg"
+                }
+              ], 
+              // HTML 标签字符串的属性
+              attrs: {
+                "type": "text",
+                "id": "inputPanel"
+              },
+
+              // DOM 树对象（由浏览器转换 HTML 字符串而来）自身的属性
+              domProps: {
+                // DOM 绑定 vm.msg
+                // 即当赋值 vm.msg 时，DOM 会做出相应改变
+                "value": (msg)
+              },
+
+              // 监听事件
+              on: {
+                "keyup": function ($event) {
+                  if (!('button' in $event)
+                    && _k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
+                  return submit($event)
+                },
+
+                // 由 v-model 指令添加的 input 事件监听
+                "input": function ($event) {
+                  if ($event.target.composing) return;
+                  // 当输入事件触发时，设置 vm.msg 的值
+                  msg = $event.target.value
+                }
+              }
+            }
+          )
+        ```
+
+        - v-model 实现
+
+            `v-model` 指令本质是一个语法糖，他是监听 `DOM` 树对象属性和监听 `input` 事件的封装。
+
+            ```js
+            domProps: {
+              // 即 document.querySelector('input').value = msg
+              "value": (msg)
+            }
+            // ...
+            on: { // 此处亦是 v-on 的实现
+              "input": function ($event) {
+                if ($event.target.composing) return;
+                // 当输入事件触发时，设置 vm.msg 的值
+                msg = $event.target.value
+              }
+            }
+            ```
+
+        - `v-for` 实现
+
+            `v-for` 本质是 `for 循环` 得到目标元素的 `render` 函数所构成的数组，该数组可用于父 `render` 函数中。
+            
+            （`v-if` 本质是 `if 语句判断`）
+
+            模板如下：
+
+            ```html
+            <ul>
+              <li v-for="item in items">{{item}}</li>
+            </ul>
+            ```
+
+            `render` 函数如下：
+
+            ```js
+            _c(
+              'ul',
+              // vm._l 即 renderList 函数
+              // 返回一个每项均为 li 的 render 函数的数组
+              _l((items),
+                function (item) {
+                  return _c(
+                    'li',
+                    [
+                      _v(_s(item))
+                    ]
+                  )
+                }
+              )
+            )
+            ```
+    3. `render` 函数（`vm._c`）逻辑
+
+        `Vue.js` 中的 `render` 函数是由 `snabbdom` 演变而来，这一点从 `render` 函数传参方式可以明显看出来。
+
+## 3. Vue.js 实现的整体流程
