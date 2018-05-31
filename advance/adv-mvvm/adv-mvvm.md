@@ -24,7 +24,7 @@
 
         - `ViewModel` 中的视图展示逻辑通过 `render` 函数来实现，其中 `render` 函数的**核心**是 `vdom`。
 
-        - `vdom` 借由 `diff` 算法可以在操作 `DOM` 时带来极低的性能消耗（原因：章节 - [Virtual DOM](../adv-virtual-dom.md)）。
+        - `vdom` 借由 `diff` 算法可以在操作 `DOM` 时带来极低的性能消耗（原因：章节 - [Virtual DOM](./../adv-virtual-dom.md)）。
 
 3. 传统 JS 库（如 `jQuery`）与 `MVVM` 框架的差异
 
