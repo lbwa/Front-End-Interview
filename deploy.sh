@@ -8,8 +8,11 @@ cd docs/.vuepress/dist
 
 git add -A
 git commit -m "$1"
-git push -f git@github.com:lbwa/lbwa.github.io.git master
+git push -f git@github.com:lbwa/lbwa.github.io.git vue
 
 echo '-- >> 分支 master 部署完成 << --'
+
+# 回到之前所在目录
+cd -
 
 # 在 shell 中区分双引号和单引号
