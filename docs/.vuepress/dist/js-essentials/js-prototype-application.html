@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Front End Interview | 原型的实际应用</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/front-end-interview/assets/css/28.styles.5282d56d.css" as="style"><link rel="preload" href="/front-end-interview/assets/js/app.5649801c.js" as="script"><link rel="preload" href="/front-end-interview/assets/js/9.4189ba80.js" as="script"><link rel="prefetch" href="/front-end-interview/assets/js/12.b0b8bdc2.js"><link rel="prefetch" href="/front-end-interview/assets/js/0.63cbeaf2.js"><link rel="prefetch" href="/front-end-interview/assets/js/1.2d9d638f.js"><link rel="prefetch" href="/front-end-interview/assets/js/2.4ca1fdf9.js"><link rel="prefetch" href="/front-end-interview/assets/js/3.2e3fe001.js"><link rel="prefetch" href="/front-end-interview/assets/js/4.31fbc22a.js"><link rel="prefetch" href="/front-end-interview/assets/js/5.5ef9f123.js"><link rel="prefetch" href="/front-end-interview/assets/js/6.dfe2fc39.js"><link rel="prefetch" href="/front-end-interview/assets/js/7.3bea5043.js"><link rel="prefetch" href="/front-end-interview/assets/js/8.85ebb90b.js"><link rel="prefetch" href="/front-end-interview/assets/js/10.56769ad8.js"><link rel="prefetch" href="/front-end-interview/assets/js/11.ee626e29.js"><link rel="prefetch" href="/front-end-interview/assets/js/13.a613c252.js"><link rel="prefetch" href="/front-end-interview/assets/js/14.06b06448.js"><link rel="prefetch" href="/front-end-interview/assets/js/15.7abf1950.js"><link rel="prefetch" href="/front-end-interview/assets/js/16.3b6bf73b.js"><link rel="prefetch" href="/front-end-interview/assets/js/17.66f95366.js"><link rel="prefetch" href="/front-end-interview/assets/js/18.3924f170.js"><link rel="prefetch" href="/front-end-interview/assets/js/19.bf168d25.js"><link rel="prefetch" href="/front-end-interview/assets/js/20.0d3a49f3.js"><link rel="prefetch" href="/front-end-interview/assets/js/21.f5a65c71.js"><link rel="prefetch" href="/front-end-interview/assets/js/22.cfd6dc92.js"><link rel="prefetch" href="/front-end-interview/assets/js/23.edc4c9cb.js"><link rel="prefetch" href="/front-end-interview/assets/js/24.e12c73cc.js"><link rel="prefetch" href="/front-end-interview/assets/js/25.bc1c1bd1.js"><link rel="prefetch" href="/front-end-interview/assets/js/26.8d1eeabb.js"><link rel="prefetch" href="/front-end-interview/assets/js/27.87b5c1dd.js">
+    <link rel="stylesheet" href="/front-end-interview/assets/css/28.styles.5282d56d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/front-end-interview/" class="home-link router-link-active"><!----><span class="site-name">
+      Front End Interview
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/front-end-interview/" class="nav-link">主页</a></div><div class="nav-item"><a href="/front-end-interview/SUMMARY.html" class="nav-link">目录</a></div><a href="https://github.com/lbwa/front-end-interview" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/front-end-interview/" class="nav-link">主页</a></div><div class="nav-item"><a href="/front-end-interview/SUMMARY.html" class="nav-link">目录</a></div><a href="https://github.com/lbwa/front-end-interview" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>基础</span><!----></p><ul class="sidebar-group-items"><li><a href="/front-end-interview/js-essentials/js-variable.html" class="sidebar-link">变量</a></li><li><a href="/front-end-interview/js-essentials/js-hoisting.html" class="sidebar-link">变量提升</a></li><li><a href="/front-end-interview/js-essentials/js-lexical-environments.html" class="sidebar-link">作用域</a></li><li><a href="/front-end-interview/js-essentials/js-prototype.html" class="sidebar-link">原型和原型链</a></li><li><a href="/front-end-interview/js-essentials/js-prototype-application.html" class="active sidebar-link">原型的实际应用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/front-end-interview/js-essentials/js-prototype-application.html#jquery-和-zepto-中的原型应用" class="sidebar-link">jQuery 和 zepto 中的原型应用</a></li><li class="sidebar-sub-header"><a href="/front-end-interview/js-essentials/js-prototype-application.html#总结" class="sidebar-link">总结</a></li><li class="sidebar-sub-header"><a href="/front-end-interview/js-essentials/js-prototype-application.html#总结-2" class="sidebar-link">总结</a></li></ul></li><li><a href="/front-end-interview/js-essentials/js-object-this.html" class="sidebar-link">函数 this 对象</a></li><li><a href="/front-end-interview/js-essentials/js-execution-context/js-execution-context.html" class="sidebar-link">执行上下文</a></li><li><a href="/front-end-interview/js-essentials/js-async.html" class="sidebar-link">异步执行</a></li><li><a href="/front-end-interview/js-essentials/js-event-loops.html" class="sidebar-link">事件循环 event loop</a></li><li><a href="/front-end-interview/js-essentials/js-promise.html" class="sidebar-link">Promise 对象</a></li><li><a href="/front-end-interview/js-essentials/js-async-function.html" class="sidebar-link">async 函数</a></li><li><a href="/front-end-interview/js-essentials/js-modules.html" class="sidebar-link">模块化</a></li><li><a href="/front-end-interview/js-essentials/js-class.html" class="sidebar-link">类</a></li><li><a href="/front-end-interview/js-essentials/js-common-functions.html" class="sidebar-link">ES6+ 一些常用功能</a></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="原型的实际应用"><a href="#原型的实际应用" aria-hidden="true" class="header-anchor">#</a> 原型的实际应用</h1><p>以下简要叙述 <code>jQuery</code> 和 <code>zepto</code> 中的原型应用。</p><p>前置知识：</p><ul><li>构造函数实例化时将生成一个<strong>新对象</strong>（章节 - <a href="https://lbwa.github.io/Front-End-Interview/js-essentials/js-prototype.html#%E6%8F%8F%E8%BF%B0-new-%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B" target="_blank" rel="noopener noreferrer">描述 new 的实例化过程<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</li></ul><h2 id="jquery-和-zepto-中的原型应用"><a href="#jquery-和-zepto-中的原型应用" aria-hidden="true" class="header-anchor">#</a> jQuery 和 zepto 中的原型应用</h2><ul><li>jQuery 中如何使用原型</li></ul><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>window<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// jQuery 是真正的构造函数 init 的一个实例</span>
+  <span class="token comment">// jQuery 在一开始就进行了实例化</span>
+  <span class="token keyword">const</span> $ <span class="token operator">=</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery<span class="token punctuation">.</span>fn<span class="token punctuation">.</span>init</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 重写构造函数 init 的实例的原型对象</span>
+  <span class="token comment">/**
+   * 1. 重写构造函数原型对象和经由 $.fn 来重写原对象的原因都是在于规范构造函数的功能拓展
+   * 2. 因为不对外暴露构造函数，那么外部拓展原型对象，只能通过 $.fn 来拓展
+   */</span>
+  jQuery<span class="token punctuation">.</span>fn <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 因为 jQuery 变量是 jQuery.fn.init 的实例，那么此处指明了 $ 的 constructor 为 jQuery</span>
+    constructor<span class="token punctuation">:</span> jQuery<span class="token punctuation">,</span>
+    css<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`Simulate function named css`</span></span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    html<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`Simulate function named html`</span></span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// jQuery 库的构造函数 init（简化）</span>
+  <span class="token comment">// jQuery 在构造函数中进行类数组 nodeList 的转换，zepto 则是分离操作</span>
+  <span class="token keyword">const</span> init <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>fn<span class="token punctuation">.</span><span class="token function-variable function">init</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> dom <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> len <span class="token operator">=</span> dom <span class="token operator">?</span> dom<span class="token punctuation">.</span>length <span class="token punctuation">:</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> dom<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>length <span class="token operator">=</span> len
+    <span class="token keyword">this</span><span class="token punctuation">.</span>selector <span class="token operator">=</span> selector <span class="token operator">||</span> <span class="token string">''</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 1. 重写 jQuery 的构造函数 init 的原型对象，并且 constructor 指向 jQuery
+   * 2. 结合 jQuery.fn = jQuery.prototype 和 constructor: jQuery 可知，对于外部，
+   * jQuery 是构造函数，对于内部，真正的构造函数是 init。对于外部，所有的共享方法在
+   * jQuery 的原型对象上，对于内部，因为下面赋值，那么所有的的共享方法也在 init 的原型
+   * 对象上。也就是说实例 jQuery 与构造函数 init 共用一个原型对象
+   */</span>
+  init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>fn <span class="token comment">// jQuery.fn = jQuery.prototype</span>
+
+  window<span class="token punctuation">.</span>$ <span class="token operator">=</span> window<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><p>实例如下：</p><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> ele <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.target'</span><span class="token punctuation">)</span>
+ele<span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'color'</span><span class="token punctuation">,</span> <span class="token string">'red'</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+ele<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+
+<span class="token comment">// 在 ele 的原型链上是否存在 css 和 html 属性</span>
+<span class="token string">'css'</span> <span class="token keyword">in</span> ele <span class="token comment">// true</span>
+<span class="token string">'html'</span> <span class="token keyword">in</span> ele <span class="token comment">// true</span>
+
+<span class="token comment">// zepto.js 中是与 $.fn 全等</span>
+ele<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> $<span class="token punctuation">.</span>prototype <span class="token comment">// true</span>
+<span class="token comment">// ele 是构造函数 jQuery 对象（别名为 $）的实例</span>
+ele <span class="token keyword">instanceof</span> <span class="token class-name">jQuery</span> <span class="token comment">// true</span>
+
+ele<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'css'</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
+ele<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
+
+<span class="token comment">// css 是 jQuery 构造函数的原型方法</span>
+ele<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'css'</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+
+<span class="token comment">// html 是 jQuery 构造函数的原型方法</span>
+ele<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><ul><li>zepto.js 如何使用原型</li></ul><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>window<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> zepto <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">// zepto.js 构造函数，实例化后得到一个对象</span>
+  <span class="token keyword">function</span> <span class="token constant">Z</span> <span class="token punctuation">(</span>dom<span class="token punctuation">,</span> selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> len <span class="token operator">=</span> dom <span class="token operator">?</span> dom<span class="token punctuation">.</span>length <span class="token punctuation">:</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// this 即为 $(selector) 的返回结果（一个对象）</span>
+      <span class="token keyword">this</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> dom<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>length <span class="token operator">=</span> len
+    <span class="token keyword">this</span><span class="token punctuation">.</span>selector <span class="token operator">=</span> selector <span class="token operator">||</span> <span class="token string">''</span>
+  <span class="token punctuation">}</span>
+
+  zepto<span class="token punctuation">.</span><span class="token function-variable function">Z</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>dom<span class="token punctuation">,</span> selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 1. 关键点：与 jQuery 的不同之处，Zepto 在此处实例化
+     * 2. 不同于 jQuery 中直接暴露构造函数 jQuery（别名 $），zepto.js 中 $ 并非构造
+     * 函数对象，而是在内部构实现构造函数 Z，因为后文有 Z.prototype = $.fn 直接重写了
+     * Z 的原型对象，那么先前的 constructor 属性已经丢失，且重写后的原型中指定
+     * constructor 为 zepto.Z，那么外部是无法访问构造函数 Z 的
+     */</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Z</span><span class="token punctuation">(</span>dom<span class="token punctuation">,</span> selector<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// zepto 将变量 dom 由类数组 nodeList 转换为真正的数组的操作与构造函数是分离的，</span>
+  <span class="token comment">// jQuery 则都在构造函数中进行</span>
+  zepto<span class="token punctuation">.</span><span class="token function-variable function">init</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 此处为 Zepto.js 中的逻辑简化</span>
+    <span class="token comment">// const slice = Array.prototype.slice</span>
+    <span class="token comment">// const dom = slice.call(document.querySelectorAll(selector))</span>
+    <span class="token keyword">const</span> dom <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> zepto<span class="token punctuation">.</span><span class="token constant">Z</span><span class="token punctuation">(</span>dom<span class="token punctuation">,</span> selector<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// $(selector) 本质就是构造函数 Z 的一个实例</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">$</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> zepto<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Zepto 原型对象</span>
+  <span class="token comment">/**
+   * 1. 重写构造函数原型对象和经由 $.fn 来重写原对象的原因都是在于规范构造函数的功能拓展
+   * 2. 因为不对外暴露构造函数，那么外部拓展原型对象，只能通过 $.fn 来拓展
+   */</span>
+  $<span class="token punctuation">.</span>fn <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// constructor: zepto.Z 呼应后面的 zepto.Z.prototype = $.fn</span>
+    constructor<span class="token punctuation">:</span> zepto<span class="token punctuation">.</span><span class="token constant">Z</span><span class="token punctuation">,</span> <span class="token comment">// Z.prototype.constructor 将返回 zepto.Z 而不是 Z，也不是对外接口 $</span>
+    css<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`Simulate function named css`</span></span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    html<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`Simulate function named html`</span></span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Z 的显式原型对象对外暴露的接口是 $.fn</span>
+  <span class="token comment">// 重写构造函数 Z 的原型</span>
+  <span class="token comment">// $.fn.constructor 将返回 zepto.Z 函数，因为 $.fn 中已经指定 constructor</span>
+  zepto<span class="token punctuation">.</span><span class="token constant">Z</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token constant">Z</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> $<span class="token punctuation">.</span>fn
+
+  <span class="token comment">// 内部 zepto 对象对外暴露的接口是 $.zepto</span>
+  $<span class="token punctuation">.</span>zepto <span class="token operator">=</span> zepto
+  window<span class="token punctuation">.</span>$ <span class="token operator">=</span> $
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br></div></div><p>实例如下：</p><div class="language-js line-numbers-mode"><pre class="language-js"><code>
+<span class="token comment">// $(selector) 返回一个内部构造函数 Z 的实例其中包含选择器的 结果项，长度，选择器 组成的类数组对象</span>
+<span class="token keyword">const</span> ele <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.target'</span><span class="token punctuation">)</span> <span class="token comment">// { 0: div.target, length: 1, selector: '.target' }</span>
+ele<span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// Simulate function named css</span>
+ele<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// Simulate function named html</span>
+
+<span class="token comment">// 在 ele 的原型链上是否存在 css 和 html 属性</span>
+<span class="token string">'css'</span> <span class="token keyword">in</span> ele <span class="token comment">// true</span>
+<span class="token string">'html'</span> <span class="token keyword">in</span> ele <span class="token comment">// true</span>
+
+<span class="token comment">// 不同于 jQuery，zepto.js 中 $ 并非构造函数对象</span>
+<span class="token comment">// 可对比使用 jQuery 时，ele.__proto__ === $.prototype 为 true</span>
+<span class="token comment">// 判断 $.fn 是否指向构造函数 Z 的原型对象</span>
+ele<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> $<span class="token punctuation">.</span>fn <span class="token comment">// true</span>
+
+<span class="token comment">// Z 实例本身不具有 css 和 html 等方法</span>
+ele<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'css'</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
+ele<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
+
+<span class="token comment">// 构造函数 Z 的原型对象上有所有实例共享的方法 css 和 html</span>
+ele<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'css'</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+ele<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h2 id="总结"><a href="#总结" aria-hidden="true" class="header-anchor">#</a> 总结</h2><ul><li><p>二者实现原型链应用方面的差异</p><ul><li><p><code>zepto.js</code> 在外部无法访问构造函数 <code>Z</code>，只能访问到内部实例化方法 <code>zepto.Z</code>（关键点在于重写原型时的 <code>constructor</code> 属性）</p></li><li><p><code>jQuery</code> 向外部暴露与真正构造函数 <code>init</code> 共用一个原型对象的实例对象 <code>jQuery</code> 接口，并非暴露真正构造函数 <code>init</code></p></li></ul></li><li><p>二者实现原型链应用方面的共同点</p><ul><li>直接在内部以<strong>对象字面量</strong>形式（对象字面量是<strong>重写</strong>原型对象，原来的原型对象将丢失）重写内部真正构造函数的原型对象，该原型对象包含了所有实例共有的一些方法（如 DOM 操作等）。</li></ul></li></ul><p>在调用二者相同的实例化方法 <code>$(selector)</code> 后，此时的实例就已经可以使用内部构造函数的原型方法了。</p><h1 id="原型对象的拓展性（插件机制）-——-重要"><a href="#原型对象的拓展性（插件机制）-——-重要" aria-hidden="true" class="header-anchor">#</a> 原型对象的拓展性（插件机制） —— 重要</h1><p>（以下 <code>$</code> 指代在 <code>jQuery</code> 中的 <code>jQuery</code> 和 <code>$</code>，在 zepto.js 中的 <code>$</code>）</p><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 以 jQuery 为例，zepto.js 同理</span>
+jQuery<span class="token punctuation">.</span>fn <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// jQuery 中拓展插件</span>
+jQuery<span class="token punctuation">.</span>fn<span class="token punctuation">.</span><span class="token function-variable function">getNodeName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nodeName
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 将拓展后的原型对象重写为内部构造函数 init 的原型对象</span>
+<span class="token comment">// 在实例化 init 后（即调用 $(selector)），即可使用插件</span>
+init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>fn
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>二者将新的原型对象先赋值给 <code>$.fn</code> 的原因就是在于赋值后可拓展插件，即 <code>$.fn</code> 相当于是对外可<strong>拓展插件的接口</strong>。</p><ul><li><p>通过 <code>$.fn</code> 拓展插件而不直接重写构造函数原型的原因（优势）</p><ul><li><p>在模块外部二者均未暴露内部构造函数，只暴露了实例化方法 <code>$</code> 变量，保证了对全局变量的最小影响，同时又不影响拓展构造函数原型对象。而且外部也不用关心内部的构造函数的实现。（减小污染）</p></li><li><p>将拓展插件功能统一在 <code>$.fn</code> 接口上，方便管理（集中接口）</p></li></ul></li></ul><h2 id="总结-2"><a href="#总结-2" aria-hidden="true" class="header-anchor">#</a> 总结</h2><p>原型对象的拓展性对后续的库的拓展性开发，SDK 封装等都是非常重要的一个<strong>核心点</strong>。</p><p>为了拓展性需要建立一个新的对象重写构造函数的原型对象，因为不对外暴露构造函数，只能通过这个新的对象作为实例化方法的一个属性（拓展接口）向外暴露，以达到拓展构造函数原型对象的目的。</p><ul><li><p>如何拓展库的原型对象（定义库的拓展性）？</p><ul><li><p>内部实现：在模块内部中，在重写构造函数对象之前，先将新的原型对象赋值给 <code>$.extend</code> 接口，再由 <code>$.extend</code> 重写内部构造函数的原型对象。这样保证了在重写之前就已经拓展了库的插件。</p></li><li><p>外部体现：对外<strong>只暴露</strong>实例化方法（如 <code>jQuery</code> 中暴露 <code>$(selector)</code> 实例方法）的变量 <code>$</code>，以该变量的某一属性定义为插件接口（此处自定义 <code>$.extend</code> 指代该接口），通过该外部接口来修改内部构造函数原型对象，同时保证构造函数的私有化。</p></li></ul></li></ul></div><div class="content edit-link"><!----><div class="last-updated"><span class="prefix">Last Updated: </span><span class="time">5/28/2018, 10:23:40 PM</span></div></div><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/front-end-interview/js-essentials/js-prototype.html" class="prev">
+          原型和原型链
+        </a></span><span class="next"><a href="/front-end-interview/js-essentials/js-object-this.html">
+          函数 this 对象
+        </a> →
+      </span></p></div></div></div></div>
+    <script src="/front-end-interview/assets/js/9.4189ba80.js" defer></script><script src="/front-end-interview/assets/js/app.5649801c.js" defer></script>
+  </body>
+</html>

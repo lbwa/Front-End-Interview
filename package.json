@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "front-end infrastructure and enhancement",
   "scripts": {
-    "dev": "vuepress dev .",
+    "dev": "vuepress dev docs",
     "build": "vuepress build docs"
   },
   "repository": {
