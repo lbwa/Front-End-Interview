@@ -3,7 +3,6 @@ const title = require('./titleList')
 module.exports = {
   base: '/front-end-interview/',
   title: 'Front End Interview',
-  theme: 'vue',
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
