@@ -2,7 +2,7 @@
 
 一般将 `virtual DOM` 简写为 `vdom`。`vdom` 的目的是以最优解去更新 `DOM`，那么就要保证更新节点的查询次数最少（`vnode`更新节点不需要查询），更新的影响范围最小（依靠 `vnode.elm` 精确定位节点）。
 
-# vdom 定义
+## vdom 定义
 
 
 
@@ -37,7 +37,7 @@
 
 3. 目的：提高重绘性能。即是 `vdom` 存在的意义。
 
-# vdom API
+## vdom API
 
 - 核心：
 
@@ -140,7 +140,7 @@ render(data)
 </div>
 ```
 
-# diff 算法 —— vdom 核心
+## diff 算法 —— vdom 核心
 
 1. 定义
 

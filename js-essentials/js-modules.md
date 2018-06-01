@@ -10,7 +10,7 @@
 
   - 各个 JS 文件必须遵循引用关系排列，但是单从 JS 文件很难分辨模块之间的依赖关系。
 
-# ES6 模块化
+## ES6 模块化
 
 为了解决以上问题，[ES6][es6-modules] 标准化了 `模块化`，具体实现即是 `export` 与 `import`。
 
@@ -42,7 +42,7 @@ formatData(newArr)
 
 [es6-modules]:https://www.ecma-international.org/ecma-262/6.0/?utm_medium=social&utm_source=wechat_session&from=singlemessage&isappinstalled=0#sec-modules
 
-# AMD（ Asynchronous Module Definition ）
+## AMD（ Asynchronous Module Definition ）
 
 `AMD`（[github wiki][amd-github]） 规范表示 **异步模块定义** 规范。
 
@@ -123,7 +123,7 @@ require(['m1', 'm2'], function (m1, m2) {
 
 [amd-github]:https://github.com/amdjs/amdjs-api/wiki/AMD
 
-# CommonJS
+## CommonJS
 
 `CommonJS` 主要是在服务端（`Node.js`）运行的模块加载器，因为在服务端不存在像客户端一样在使用前需要先从网络下载 JS 文件，那么在 `CommonJS` 中所有引入的模块默认都是**同步**加载的。
 
@@ -141,13 +141,13 @@ module.exports = {
 }
 ```
 
-# AMD 和 CommonJS 使用场景区分
+## AMD 和 CommonJS 使用场景区分
 
 - 需要异步加载 JS 模块，使用 AMD
 
 - 项目中引入了 npm ，则建议使用 CommonJs
 
-# 构建工具
+## 构建工具
 
 - webpack
 

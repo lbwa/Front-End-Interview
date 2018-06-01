@@ -1,0 +1,24 @@
+{
+  "name": "front-end-interview",
+  "version": "1.0.0",
+  "description": "front-end infrastructure and enhancement",
+  "scripts": {
+    "build": "vuepress build dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lbwa/Front-End-Interview.git"
+  },
+  "keywords": [
+    "front-end"
+  ],
+  "author": "Bowen (lbwa)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lbwa/Front-End-Interview/issues"
+  },
+  "homepage": "https://github.com/lbwa/Front-End-Interview#readme",
+  "devDependencies": {
+    "vuepress": "^0.10.0"
+  }
+}

@@ -1,4 +1,6 @@
-# JavaScript 中的异步执行
+# 异步执行
+
+## JavaScript 中的异步执行
 
 本章主要叙述了 `JavaScript` 中异步操作所解决的问题，异步的实现方式等一系列相关内容。
 
@@ -8,7 +10,7 @@
 
   - 所有的异步解决方案重点是**避免**不必要的代码阻塞（如 `Ajax` 请求等待）。即异步解决方案**依靠**事件循环的原理**优化**了代码的**执行顺序**。
 
-# 单线程和异步有什么关系
+## 单线程和异步有什么关系
 
 单线程通俗上解释为当前 JS 执行只有一个线程（`thread`），即只有一个执行上下文栈（`execution context stack`，亦称调用栈（`call stack`）），即只关注一件事执行。
 
@@ -88,7 +90,7 @@ console.log('I am 2nd logger in 1st event loop')
 
 [web-works]:https://html.spec.whatwg.org/multipage/workers.html#workers
 
-## 总结
+### 总结
 
 - 异步执行避免了不必要的代码阻塞
 
@@ -98,13 +100,13 @@ console.log('I am 2nd logger in 1st event loop')
 
   - callback 耦合，不容易模块化
 
-# 事件循环 event loop
+## 事件循环 event loop
 
 `JavaScript` 中实现异步执行的具体解决方案就是 `event loop`。
 
 对于事件循环的解析见章节 [event loop](js-event-loops.md)。
 
-# jQuery 中的 Deferred
+## jQuery 中的 Deferred
 
 - 标准中的 `Promise` 对象由 `jQuery` 中的 `Deferred` 对象演变而来。
 
@@ -186,15 +188,15 @@ $.when(wh)
 
 [Open/closed-principle]:https://en.wikipedia.org/wiki/Open/closed_principle
 
-# Promise 基本原理与使用
+## Promise 基本原理与使用
 
 章节 - [Promise 对象](js-promise.md)
 
-# Promise 对象的再封装 —— async/await
+## Promise 对象的再封装 —— async/await
 
 章节 - [异步函数](js-async-function.md)
 
-# 总结当前 JS 解决异步的方案
+## 总结当前 JS 解决异步的方案
 
 - Promise
 

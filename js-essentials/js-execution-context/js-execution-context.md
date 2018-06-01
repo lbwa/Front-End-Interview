@@ -13,7 +13,7 @@
 注：
   - 执行上下文栈即是执行上下文的**容器**。
 
-      ![execution-context](execution-context.png)
+      ![execution-context](./execution-context.png)
 
 ## Running execution context 的更替
 

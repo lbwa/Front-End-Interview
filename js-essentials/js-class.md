@@ -1,4 +1,6 @@
-# JS 构造函数
+# 类
+
+## JS 构造函数
 
 ```js
 function Fn (x, y) {
@@ -16,7 +18,7 @@ ins.sum() // 3
 
 常规的 JS 构造函数的一个显著特点是构造函数的定义与构造函数原型上的实例共有方法定义是**分离**的。
 
-# class
+## class API
 
 - class 语法
 
@@ -85,7 +87,7 @@ john.sayName().sayAge().sayGender() // "My name is John." "My age is 20" "John i
 
 示例中，`FullPerson` 继承了 `Person` 的方法。
 
-# 拓展：class 与普通 JS 构造函数的区别
+## 拓展：class 与普通 JS 构造函数的区别
 
 - 原型对象方法的定义
 

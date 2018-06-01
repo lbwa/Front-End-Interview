@@ -1,4 +1,6 @@
-# Promise API
+# Promise 对象
+
+## Promise API
 
 （主要参考 [promise 标准][promise-standard]）
 
@@ -107,7 +109,7 @@ promise === promise.finally() // false
 
 [promise-standard]:https://promisesaplus.com/
 
-# Promise 链式执行
+## Promise 链式执行
 
 比如需要以特定顺序条件的方式请求资源的**一种**实现方式。
 
@@ -153,7 +155,7 @@ getResult()
 
 [ES7-async-function]:https://www.ecma-international.org/ecma-262/#sec-async-function-definitions
 
-# Promise 浏览器支持
+## Promise 浏览器支持
 
 在不支持 `Promise` 原生对象的浏览器中可使用 [bluebird][bluebird]（[CDN][bluebird-CDN]）。该库 API 实现与原生完全相同。
 
