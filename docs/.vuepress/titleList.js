@@ -31,7 +31,8 @@ const advance = {
     ...utils.genChildTitle(
       'adv-',
       'virtual-dom',
-      'mvvm/adv-mvvm'
+      'mvvm/adv-mvvm',
+      'component'
     )
   ]
 }
