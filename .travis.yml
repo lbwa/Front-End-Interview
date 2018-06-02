@@ -9,15 +9,18 @@ cache:
 install:
   - yarn
 
-script:
-  - yarn run build
-
-# https://docs.travis-ci.com/user/deployment/pages/
 deploy:
-  provider: pages
-  # skip-cleanup 必须为 true，否则 CI 在 build 期间将删除所有准备上传的文件
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  local-dir: docs/.vuepress/dist
+  provider: script
+  script: bash deploy.sh $TRAVIS_TAG
   on:
     branch: master
+
+# https://docs.travis-ci.com/user/deployment/pages/
+# deploy:
+#   provider: pages
+#   # skip-cleanup 必须为 true，否则 CI 在 build 期间将删除所有准备上传的文件
+#   skip-cleanup: true
+#   github-token: $GITHUB_TOKEN
+#   local-dir: docs/.vuepress/dist
+#   on:
+#     branch: master

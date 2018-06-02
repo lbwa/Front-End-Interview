@@ -7,6 +7,7 @@ set -e
 yarn run build
 cd docs/.vuepress/dist
 
+# 创建一个 子 repo，只提交 dist 目录下的文件至 gh-pages 分支中
 git init
 git add -A
 git commit -m "$1"
