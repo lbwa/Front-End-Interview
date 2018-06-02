@@ -1,7 +1,6 @@
 language: node_js
 
-node_js: 8.9.3
-yarn: 1.7.0
+node_js: 10.3.0
 
 cache:
   direactories:
