@@ -1,7 +1,7 @@
 const title = require('./titleList')
 
 module.exports = {
-  base: 'Front-End-Interview',
+  base: '/Front-End-Interview/', // 区分大小写
   title: 'Front End Interview',
   themeConfig: {
     nav: [
