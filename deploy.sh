@@ -3,12 +3,20 @@
 # 确保脚本抛出遇到的错误
 set -e
 
+# 用于手动部署
 yarn run build
 cd docs/.vuepress/dist
 
+git init
 git add -A
 git commit -m "$1"
-#git push -f git@github.com:lbwa/front-end-interview.git master:gh-pages
+
+# 二选一
+# 用于 CI 部署
+# git push origin master
+
+# 用于手动部署
+git push -f git@github.com:lbwa/front-end-interview.git master:gh-pages
 
 echo '-- >> 分支 master 部署完成 << --'
 
