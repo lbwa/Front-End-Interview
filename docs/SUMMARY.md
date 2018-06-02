@@ -46,6 +46,8 @@
 
 * [MVVM 架构模式](advance/adv-mvvm/adv-mvvm.md)
 
+* [组件化 component](advance/adv-component.md)
+
 ## Web API
 
 * [文档对象模型 DOM](web-api/web-api-document-object-model.md)
