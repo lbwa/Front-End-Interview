@@ -6,8 +6,8 @@ cache:
   direactories:
     - node_modules
 
-install:
-  - yarn
+# install:
+#   - yarn
 
 deploy:
   provider: script

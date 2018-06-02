@@ -1,7 +1,7 @@
 const title = require('./titleList')
 
 module.exports = {
-  base: '/front-end-interview/',
+  base: 'Front End Interview',
   title: 'Front End Interview',
   themeConfig: {
     nav: [
