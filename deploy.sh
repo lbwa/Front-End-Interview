@@ -8,7 +8,7 @@ cd docs/.vuepress/dist
 
 git add -A
 git commit -m "$1"
-git push -f git@github.com:lbwa/front-end-interview.git master:gh-pages
+#git push -f git@github.com:lbwa/front-end-interview.git master:gh-pages
 
 echo '-- >> 分支 master 部署完成 << --'
 

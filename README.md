@@ -1,5 +1,7 @@
 # Front-End Interview
 
+[![Build Status](https://travis-ci.org/lbwa/Front-End-Interview.svg?branch=master)](https://travis-ci.org/lbwa/Front-End-Interview)
+
 👉[在线浏览][online]
 
 本存储库主要是梳理和强化自己在前端学习历程的 `JavaScript` 基础知识。
