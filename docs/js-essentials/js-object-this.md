@@ -2,7 +2,7 @@
 
 （以下是重新整理了 [我的博客 —— 理解 this 指向][this-blog]。）
 
-this 对象指向当前函数被调用时的执行上下文（`execution context`（[章节](js-execution-context/js-execution-context.md)））。
+this 对象指向当前函数被调用时的执行上下文（`execution context`（[章节](js-execution-context/js-execution-context.md)）），即可理解为是谁调用了当前函数。
 
 在非箭头函数的函数中， `this` 对象只有在该函数被 **调用时**（即函数的执行上下文成为当前正在执行的执行上下文（`running execution context`）），才能确定 `this` 的值。箭头函数本身是没有 `this` 对象的，它内部的 `this` 对象是借用的定义函数时外部环境的 `this` 对象。即只有箭头函数中的 `this` 对象是固定的，它在定义时确定。
 

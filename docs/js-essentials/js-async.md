@@ -98,7 +98,7 @@ console.log('I am 2nd logger in 1st event loop')
 
   - 降低了代码可读性，因为代码并不是按照书写顺序执行
 
-  - callback 耦合，不容易模块化
+  - 在没有 `Promise` 对象之前，callback 易耦合，不容易模块化
 
 ## 事件循环 event loop
 
