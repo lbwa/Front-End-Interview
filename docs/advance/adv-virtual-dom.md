@@ -45,75 +45,82 @@
 
     - `patch` 函数：对比新旧 `vnode`，并生成或更新 `DOM` 节点。
 
-```js
-// const snabbdom = require('sanbbdom')
-import snabbdom from 'snabbdom'
-import h from 'snabbdom/h'
-import snabbdom_class from 'snabbdom/modules/class'
-import snabbdom_props from 'snabbdom/modules/props'
-import snabbdom_style from 'snabbdom/modules/style'
-import snabbdom_eventlistener from 'snabbdom/modules/eventlistener'
+    - API 示例如下：
 
-// 初始化 patch
-const patch = snabbdom.init([
-  snabbdom_class,
-  snabbdom_props,
-  snabbdom_style,
-  snabbdom_eventlisteners
-])
+        ```js{18-19}
+        // const snabbdom = require('sanbbdom')
+        import snabbdom from 'snabbdom'
+        import h from 'snabbdom/h'
+        import snabbdom_class from 'snabbdom/modules/class'
+        import snabbdom_props from 'snabbdom/modules/props'
+        import snabbdom_style from 'snabbdom/modules/style'
+        import snabbdom_eventlistener from 'snabbdom/modules/eventlistener'
 
-// 生成 vnode
-h(`${/* 标签名 */}`, {/* 属性 */}, [/* 子元素 */])
-h(`${/* 标签名 */}`, {/* 属性 */}, `${/* 文本节点 */}`)
+        // 初始化 patch
+        const patch = snabbdom.init([
+          snabbdom_class,
+          snabbdom_props,
+          snabbdom_style,
+          snabbdom_eventlisteners
+        ])
 
-// 生成并修改 DOM
-const container = document.querySelector('#container')
+        // 生成 vnode
+        h(`${/* 标签名 */}`, {/* 属性 */}, [/* 子元素 */])
+        h(`${/* 标签名 */}`, {/* 属性 */}, `${/* 文本节点 */}`)
+        ```
 
-patch(container, vnode) // vnode 初次渲染至 container 容器中
-patch(vnode, newVnode) // 利用 js 对比新旧 vnode 来得到操作 DOM 的最优解
-```
+        ```js{4-8}
+        // 容器元素
+        const container = document.querySelector('#container')
 
-以下示例如何生成一个 `table` 表格：
+        // 初次渲染：vnode 初次渲染至 container 容器中
+        patch(container, vnode)
 
-```js
-const data = [
-  {
-    name: 'name',
-    age: 'age',
-    address: 'address'
-  },
-  {
-    name: 'John Wick',
-    age: 20,
-    address: 'Shanghai'
-  }
-]
+        // 更新节点：利用 js 对比新旧 vnode 来得到操作 DOM 的最优解
+        patch(vnode, newVnode)
+        ```
 
-let vnode = {} // 缓存容器
+  - 示例：生成 `table` 表格
 
-function render () {
-  // 生成 vnode
-  const newVnode = h('table', {}, data.map(function (item) {
-    const tds = []
-    Object.keys(item).forEach(key => {
-      tds.push(h('td', {}, item[key]))
-    })
-    // 返回一个以 tr 元素的 vnode 组成的数组
-    return h('tr', {}, tds)
-  }))
+      ```js
+      const data = [
+        {
+          name: 'name',
+          age: 'age',
+          address: 'address'
+        },
+        {
+          name: 'John Wick',
+          age: 20,
+          address: 'Shanghai'
+        }
+      ]
 
-  if (vnode) {
-    patch(vnode, newVnode)
-  } else {
-    patch(container, newVnode)
-  }
+      let vnode = {} // 缓存容器
 
-  // 缓存 vnode
-  vnode = newVnode
-}
+      function render () {
+        // 生成 vnode
+        const newVnode = h('table', {}, data.map(function (item) {
+          const tds = []
+          Object.keys(item).forEach(key => {
+            tds.push(h('td', {}, item[key]))
+          })
+          // 返回一个以 tr 元素的 vnode 组成的数组
+          return h('tr', {}, tds)
+        }))
 
-render(data)
-```
+        if (vnode) {
+          patch(vnode, newVnode)
+        } else {
+          patch(container, newVnode)
+        }
+
+        // 缓存 vnode
+        vnode = newVnode
+      }
+
+      render(data)
+      ```
 
 得到表格如下：
 

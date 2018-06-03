@@ -56,7 +56,9 @@
 
   1. `JSX` 本质是什么
 
-      - `JSX` 本质是 JS 代码语法糖
+      - `JSX` 本质是 JS 代码**语法糖**
+
+          - 书写的 `JSX` 即是书写的模板，`JSX` 通过编译为  JS 代码来实现逻辑和 JS 变量，最终将生成 HTML。
 
           - 仅能在开发环境中使用 `JSX`，浏览器无法解析 `JSX`。所以在开发环境中会将所有的 `JSX` 编译成 JS 代码。
 
@@ -68,7 +70,7 @@
 
           - [JSX in react][react-jsx]
 
-          - 精简：在 `JSX` 中**大括号**内可使用 JS 变量和表达式）。
+          - 精简：在 `JSX` 中**大括号**内可使用 JS 变量和表达式。
 
               ```jsx
               class App extends Component {
@@ -94,7 +96,83 @@
 
   2. `JSX` 和 `vdom` 的关系
 
-      - `react` 和 `vue` 的渲染函数都是基于 `vdom` 的 `h` 函数再结合自身库的特点改造而成的衍生物，调用它们的渲染函数都会将模板渲染为 `vnode`。其中，渲染出的 `vnode` 包含了对真实 `DOM` 节点的映射，并与其他 `vnode` 组成 `vdom`。
+      - `JSX` 需要编译为 JS 来实现模板中的逻辑，再由生成的 JS 来渲染 HTML
+
+      - `JSX` 编译为 JS 之后再结合 `vdom` 可实现高效的渲染 HTML。那么 `JSX` 的归宿是调用 **渲染函数** 生成 `vnode`，其中，`vnode` 包含了对真实 `DOM` 的映射。
+
+          （以 `react` 为例）
+
+          - 初次渲染
+
+              ```js
+              /**
+               * react 中初次渲染
+               * <App/> —— JSX 被编译为 JS，并调用渲染函数生成 vnode
+               * container —— 真实 DOM 节点，容器元素
+               */
+              ReactDOM.render(<App/>, container)
+              // 触发内部方法
+              patch(container, vnode)
+              ```
+
+          - 更新 `DOM`
+
+              ```js
+              // 修改 state
+              this.setState({ ... })
+
+              // 触发调用更新 vnode 的方法
+              patch(vnode, newVnode)
+              ```
+          - 自定义组件的解析
+
+              ```js
+              // Input 和 List 均为 class
+              import Input from './input'
+              import List from './list'
+
+              function render () {
+                return (
+                  <div>
+                    <p>this is demo</p>
+                    <Input addTitle={this.addTitle.bind(this)}/>
+                    <List data={this.state.list}/>
+                  </div>
+                )
+              }
+              // babel --plugins transform-react-jsx demo.jsx
+              ```
+
+              编译结果为：
+
+              ```js{6-7}
+              function render() {
+                return React.createElement(
+                  'div',
+                  null,
+                  // Input 组件将根据 props 实例化，并被调用 render 原型方法，最终生成 vnode。
+                  React.createElement(Input, { addTitle: this.addTitle.bind(this) }),
+                  React.createElement(List, { data: this.state.list })
+
+                  // 等价于
+                  /**
+                   * const input = new Input({ addTitle: this.addTitle.bind(this) })
+                   * const vnode = input.render()
+                   * List 组件同理
+                   */
+                );
+              }
+              ```
+
+              1. 当编译自定义组件时，`react` 渲染函数将被传入自定义组件的 `class`，而原生标签是传入一个原生标签名的字符串。
+
+              2. 在传入自定义组件的 `class` 后，`react` 会根据 `props` 初始化实例，之后调用实例的 `rener` 原型方法，从而生成对应的 `vnode`。
+
+                  - 后代组件的 `render` 函数如同祖先组件的 `render` 方法一样，都是 `JSX`，那么他们都将调用 `React.createElement` 方法生成 `vnode`。
+
+      - 总结：`react` 和 `vue` 的渲染函数都是基于 `vdom`（[拓展阅读](./adv-virtual-dom.md)） 的 `h` 函数并结合自身库的特点改造而成的衍生物，调用它们的渲染函数都会将模板渲染为 `vnode`。其中，渲染出的 `vnode` 包含了对真实 `DOM` 节点的映射，并与其他 `vnode` 组成 `vdom`。
+
+          - 模板：`react` 中是 `JSX`，`vue` 中是 `*.vue` 单文件组件中的 `<template></template>` 内容
 
 ## 实现组件化的基本逻辑
 
