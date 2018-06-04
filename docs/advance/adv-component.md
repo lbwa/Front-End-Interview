@@ -147,7 +147,7 @@
 
         编译结果为：
 
-        ```js{6-7}
+        ```js
         function render() {
           return React.createElement(
             'div',
@@ -172,7 +172,38 @@
 
             - 后代组件的 `render` 函数如同祖先组件的 `render` 方法一样，都是 `JSX`，那么他们都将调用 `React.createElement` 方法生成 `vnode`。
 
-            - ***之所以*** 会执行实例化并调用实例的原型方法 `render` 的原因是，当前组件编译而成的 `React.createElement` 是 `vdom` 中 `h` 函数的变体（[API](./adv-virtual-dom.md)），它需要**依据**子组件的 `vnode` 来完成当前组件的渲染。
+            - ***之所以*** 会执行实例化并调用实例的原型方法 `render` 的原因是，当前组件 `JSX` 编译而成的 `React.createElement`（[API - from react site][createElement-api]） 是 `vdom` 中 `h` 函数的变体（[章节 - virtual-dom](./adv-virtual-dom.md)）。当接受的第一参数为非字符串标签时，该函数将在内部调用自定义组件的 `render` 原型方法来渲染自定义组件至 `vnode`，它并不能直接如同 `字符串标签` 一样直接渲染出 `vnode`。它需要**依据**自定义组件 `render` 方法返回的 `vnode` 来完成当前 `React.createElement` 的渲染。
+            
+            - 注：`vnode`（[章节 - virtual-dom](./adv-virtual-dom.md)）其中包含了对真实 `DOM` 节点的映射，其中存在 `字符串标签名`。所以 `React.createElement` 可依据 `字符串标签名` 和 `vnode` 都能渲染出对应的 `vnode`。
+
+                ```js
+                /**
+                 * 用于渲染 type 节点为 vnode
+                 * @param {String|Object} type - 字符串标签，react 组件或片段
+                 * @param {Object} props - 传入 type 中的 props 对象（包含 HTML 标签属性）
+                 * @param {Object|Array} children - type 的子节点（节点）
+                 */
+                React.createElement(
+                  type,
+                  props,
+                  ...children
+                )
+
+                // type 为 字符串标签名，将直接依据 标签名 和 props 和 子节点渲染出对
+                // 应的 vnode
+                React.createElement('div', { className: 'target' })
+                // 以上依据 `vdom` 的 `h` 函数可直接渲染出对应的 `vnode`
+
+                // type 为 非字符串标签名，将依据 type 的原型方法 render 并结合 props
+                // 和 子节点 来渲染出 vnode
+                React.createElement(List, { data: this.state.list })
+                // 因为 List 作为 class 传入当前模块，那么可以实现以下逻辑
+                const list = new List({ data: this.state.list })
+                const vnode = list.render()
+                // 向 React.createElement 函数返回一个 vnode，依据 vnode 中的字符串
+                // 标签名即可完成当前 React.createElement 的渲染
+                ```
+                [createElement-api]:https://reactjs.org/docs/react-api.html#createelement
 
     - 多层自定义组件的解析 - ***重要***
 
@@ -182,7 +213,7 @@
         import App from './App'
         // 应用源头
         ReactDOM.render(<App/>, document.getElementById('root'))
-        // 将调用内部方法
+        // 将调用内部方法，只接受 vnode 作为参数
         patch(document.getElementById('root'), <App/>)
 
         // 其中解析形如 <APP/> 的 JSX 时，即
@@ -192,9 +223,9 @@
         React.createElement(App, null)
 
         /**
-         * 1. React.createElement(App, null) 是 vdom 的 h 函数变体，那么它需
-         * 要依据原生 DOM 标签字符串来完成渲染，那么此时需要 App 的渲染结果
-         * （即 vnode ）来完成当前应用的渲染
+         * 1. React.createElement(App, null) 是 vdom 的 h 函数变体，那么它接受
+         * `标签名`（与 h 函数相同）或 一个 react 组件（将调用该组件的 render 方法渲
+         * 染该组件）作为参数（即 vnode ）来完成当前 `React.createElement` 的渲染
          * 2. App 作为 构造函数（即 class）传入
          * 依据 1 和 2 那么有以下实现 App 渲染的逻辑
          */
@@ -202,16 +233,26 @@
         // 向 App 组件传入 props（如有）实例化为 app 实例，即
         const app = new App(null)
         // 调用 app 实例的原型方法 render()，即可返回 App 组件的 vnode
-        return app.render() // 返回 vnode，完成 App 自定义组件的渲染
+        const vnode = app.render()
+        // 以上 render 调用包含了对 render 中的 JSX 解析过程：
+        React.createElement(
+          'ul',
+          null,
+          React.createElement('li'. null, 'This is a element.')
+        )
+        // 返回由 ul 编译而成的 vnode，完成 App 自定义组件的渲染，即完成
+        // React.createElement(App, null) 的渲染
 
-        // 当 App 组件中仍有自定义组件，即
-        // app.render() 返回形如
+        // ================== 递归 ======================
+
+        // 当 App 组件中仍有自定义组件，即 24 行 app.render() 返回形如第一参数仍为自定义组
+        // 件的函数调用
         React.createElement(List, { data: this.state.list })
-        // 以上表示 React.createElement 需要依据 List 的渲染结果来完成当前 app 的渲染
+        // 以上表示 React.createElement 需要解析 List 为 vnode 来完成当前 app 的渲染
         // 那么依照解析 App 自定义组件的逻辑继续解析 List 自定义组件。
         ```
 
-        - 总结：依照以上逻辑可 ***递归*** 后代组件，直至返回的 `React.createElement` 的第一个参数是原生 `HTML` 元素，而非自定义组件。此时，最底层的组件的 `JSX` 编译生成的 `React.createElement` 将返回一个 `vnode`。在当前最低层组件完成渲染时，将逐步完成父级组件的渲染，最后完成整个应用的渲染。
+        - 总结：依照以上逻辑可 ***递归*** 后代组件，直至返回的 `React.createElement` 的第一个参数是原生 `HTML` 元素字符串（而非 `react` 组件或 `react` 片段）。此时，最底层的组件的 `JSX` 编译生成的 `React.createElement` 将直接依据字符串标签名返回一个 `vnode`。在当前最低层组件完成渲染时，将逐步完成父级组件的渲染，最后完成整个应用的渲染。
 
 3. 总结：`react` 和 `vue` 的 ***渲染函数*** 都是基于 `vdom`（[拓展阅读](./adv-virtual-dom.md)） 的 `h` 函数并结合自身库的特点改造而成的衍生物，调用它们的渲染函数都会将模板渲染为 `vnode`。其中，渲染出的 `vnode` 包含了对真实 `DOM` 节点的映射，并与其他 `vnode` 组成 `vdom`。
 
