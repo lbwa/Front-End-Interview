@@ -48,6 +48,8 @@
 
 * [组件化 component](advance/adv-component.md)
 
+* [Hybrid](advance/adv-hybrid/adv-hybrid.md)
+
 ## Web API
 
 * [文档对象模型 DOM](web-api/web-api-document-object-model.md)

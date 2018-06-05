@@ -32,7 +32,8 @@ const advance = {
       'adv-',
       'virtual-dom',
       'mvvm/adv-mvvm',
-      'component'
+      'component',
+      'hybrid/adv-hybrid'
     )
   ]
 }
