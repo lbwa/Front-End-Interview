@@ -98,9 +98,9 @@
 
 ### JS 和客户端通信的基本形式
 
-（原理类似 `JSONP` 的形式。）
+（原理类似 `JSONP` 跨域解决方案的形式。）
 
-1. JS 向客户端传递参数和回调函数
+1. JS 向客户端传递参数和回调函数。
 
 2. 客户端通过回调函数返回内容。
 
@@ -144,14 +144,14 @@ setTimeout(() => {
 
 ```js
 function _invoke (type, data, callback) {
-  // 省略验证 data 和 callback 兼容处理
+  // excluding verifying params data and callback validity
 
   // package schema url
   const schema = `schema://utils/${type}`
 
   // add params to url
   if (data) {
-    scheme = scheme + '?'
+    schema = schema + '?'
     const keys = Object.keys(data)
     const len = keys.length
 
@@ -159,7 +159,7 @@ function _invoke (type, data, callback) {
       if (dataKey !== keys[len - 1]) {
         schema += `${dataKey}=${data[dataKey]}&`
       } else {
-        scheme += `${dataKey}=${data[dataKey]}`
+        schema += `${dataKey}=${data[dataKey]}`
       }
     })
   }
@@ -168,13 +168,13 @@ function _invoke (type, data, callback) {
   if (typeof callback === 'String') {
     callbackName = callback
   } else {
-    // declare a function in window when callback is a function
-    // It will be called when scheme respond
+    // declare a unique function in window when param callback is a function
+    // It will be called when schema respond
     callbackName = `${type}${Date.now()}`
     window[callbackName] = callback
   }
 
-  scheme += `&callback=${callbackName}`
+  schema += `&callback=${callbackName}`
   // package schema url ending
 
   // perform request
@@ -184,7 +184,7 @@ function _invoke (type, data, callback) {
   const body = document.body || document.getElementsByTagNames('body')[0]
   body.appendChild(iframe)
 
-  // Once schema request invoked, we can destroy iframe
+  // Once schema request has been invoked, we can destroy iframe
   // It's used to prevent too many iframe to memory overflow
   setTimeout(() => {
     body.removeChild(iframe)
@@ -213,3 +213,13 @@ window.invoke.share({}, function (res) {
   }
 })
 ```
+
+### 内置 `schema` 协议调用文件上线
+
+- 将封装的` schema` 协议调用代码打包为 `invoke.js`，内置到客户端。
+
+- 客户端每次启动 `webview`，都默认执行 `invoke.js`。
+
+    - 本地加载免去了网络加载时间
+
+    - 本地加载更安全。因为没有网络请求，防范了因抓包造成的黑客攻击。
