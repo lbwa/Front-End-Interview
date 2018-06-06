@@ -20,7 +20,7 @@ git push -f git@github.com:lbwa/front-end-interview.git master:gh-pages
 # 在 CI 后台的 enviroment variables 中设置 GITHUB_TOKEN 为 Personal access tokens
 # Personal access tokens 在 账号 dev settings 中被创建
 
-#git push -f https://${GITHUB_TOKEN}@github.com/lbwa/lbwa.github.io.git master:gh-pages
+#git push -f https://${GITHUB_TOKEN}@github.com/lbwa/front-end-interview.git master:gh-pages
 
 echo '-- >> 分支 master 部署完成 << --'
 
