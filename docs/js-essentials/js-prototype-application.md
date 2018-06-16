@@ -26,7 +26,8 @@
    * 2. 因为不对外暴露构造函数，那么外部拓展原型对象，只能通过 $.fn 来拓展
    */
   jQuery.fn = jQuery.prototype = {
-    // 因为 jQuery 变量是 jQuery.fn.init 的实例，那么此处指明了 $ 的 constructor 为 jQuery
+    // 因为 jQuery 变量是 jQuery.fn.init 的实例，
+    // 那么此处指明了 $ 的 constructor 为 jQuery
     constructor: jQuery,
     css: function (key, value) {
       return `Simulate function named css`
@@ -138,7 +139,8 @@ ele.__proto__.hasOwnProperty('html') // true
    */
   $.fn = {
     // constructor: zepto.Z 呼应后面的 zepto.Z.prototype = $.fn
-    constructor: zepto.Z, // Z.prototype.constructor 将返回 zepto.Z 而不是 Z，也不是对外接口 $
+    // Z.prototype.constructor 将返回 zepto.Z 而不是 Z，也不是对外接口 $
+    constructor: zepto.Z,
     css: function (key, value) {
       return `Simulate function named css`
     },
@@ -163,7 +165,8 @@ ele.__proto__.hasOwnProperty('html') // true
 
 ```js
 
-// $(selector) 返回一个内部构造函数 Z 的实例其中包含选择器的 结果项，长度，选择器 组成的类数组对象
+// $(selector) 返回一个内部构造函数 Z 的实例其中包含选择器的 结果项，长度，选择器 组成
+// 的类数组对象
 const ele = $('.target') // { 0: div.target, length: 1, selector: '.target' }
 ele.css() // Simulate function named css
 ele.html() // Simulate function named html

@@ -82,7 +82,8 @@ class FullPerson extends Person {
 }
 
 const john = new FullPerson('John', 20, 'male')
-john.sayName().sayAge().sayGender() // "My name is John." "My age is 20" "John is male"
+john.sayName().sayAge().sayGender()
+// "My name is John." "My age is 20" "John is male"
 ```
 
 示例中，`FullPerson` 继承了 `Person` 的方法。
@@ -107,21 +108,24 @@ function Fn1 () {/* do something */}
 Fn1.prototype = new Fn0()
 Fn1.prototype.hasOwnProperty('constructor') // false
 
-// 另一种实现方式如下，二者区别在于 Object.create() 创建出的新对象的 __proto__ 可设置为 null
+// 另一种实现方式如下，二者区别在于 Object.create() 创建出的新对象的 __proto__ 可设置
+// 为 null
 Fn1.prototype = Object.create(Fn0.prototype)
 
 /**
  * 1. 经过以上继承，Fn1.prototype.__proto__ === Fn0.prototype，此时，把 Fn1.prototype
- * 看作一个实例整体，即为 Fn0 的一个实例，那么 Fn1.prototype 就不存在 constructor 属性，那么
- * Fn1.prototype.constructor 访问的实际上是原型链上 Fn1.prototype 的原型对象 Fn0.prototype 的
- * constructor，即 Fn1 原型已丢失 constructor。
+ * 看作一个实例整体，即为 Fn0 的一个实例，那么 Fn1.prototype 就不存在 constructor 属
+ * 性，那么 Fn1.prototype.constructor 访问的实际上是原型链上 Fn1.prototype 的原型对象
+ * Fn0.prototype 的 constructor，即 Fn1 原型已丢失 constructor。
  */
 
 Fn1.prototype instanceof Fn0 // true
 
-// 极易忽略的一步，将 Fn1 原型的 constructor 指回原构造函数，重新定义 Fn1 函数原型的 constructor。
+// 极易忽略的一步，将 Fn1 原型的 constructor 指回原构造函数，重新定义 Fn1 函数原型
+// 的 constructor。
 
-// 另外之前直接使用对象字面量重写了 Fn1 的原型，若直接重新定义 constructor，这些行为将导致 constructor 成为了可枚举属性，即 [[enumerable]] 为 true
+// 另外之前直接使用对象字面量重写了 Fn1 的原型，若直接重新定义 constructor，这些行为将
+// 导致 constructor 成为了可枚举属性，即 [[enumerable]] 为 true
 Object.defineProperty(Fn1.prototype, 'constructor',{
   enumerable: false,
   value: Fn1

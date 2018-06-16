@@ -95,7 +95,8 @@
         ```
         - `render` 函数体如下：
         ```js
-        // with 用于指定 with 代码块中的上一级作用域，在查询当前作用域中未声明变量的声明时，起作用
+        // with 用于指定 with 代码块中的上一级作用域，在查询当前作用域中未声明变量的声
+        // 明时，起作用
         // this 指向 vue 实例 vm
         with(this) {
           // _c 即 vm._c，调用 createElement()，即创建 vnode
@@ -228,7 +229,8 @@
 
             ```js
             /**
-             * 1. src/core/instance/lifecycle.js 定义 Vue.prototype._update = function () {}
+             * 1. src/core/instance/lifecycle.js 定义
+             *    Vue.prototype._update = function () {}
              * 2. vm._update 用于对比新旧 vnode 的差异
              */
             vm._update(vnode) {

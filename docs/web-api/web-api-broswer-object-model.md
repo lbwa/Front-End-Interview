@@ -27,7 +27,8 @@ location.pathname // 路径，即 location.host 后的字符串
 location.search // 查询字符串，即 ? 后字符串
 location.hash // 路由 hash 值，即 # 后字符串
 
-// 历史记录信息对象（Vue router 的路由实例 vm.$router 应用，如 vm.$router.back()，vm.$router.go(n)）
+// 历史记录信息对象（Vue router 的路由实例 vm.$router 应用，如 vm.$router.back()，
+// vm.$router.go(n)）
 history
 history.go(n)
 history.back()

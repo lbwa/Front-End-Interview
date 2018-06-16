@@ -41,14 +41,19 @@ getSomeData(request).then(res => res, err => console.error(err))
 - `then`、`catch`、`finally`中 `return` 的值将作为链式调用链中下一个函数中回调函数的**参数**，`Promise.all`、`Promise.race`中接受的 `Promise` 参数将仍然传递给链式调用链的下一个参数。
 
 ```js
-Promise.resolve('I am resolved').then(res => res) // Promise {<resolved>: "I am resolved"}
+Promise.resolve('I am resolved').then(res => res)
+// Promise {<resolved>: "I am resolved"}
 
 /**
  * 1. catch 本身内部没有抛出错误的情况下，返回一个 resolved 的 Promise ，此处 `resolved`
  * 状态表示之前的错误已经被处理
  */
-Promise.reject('I am rejected').catch(err => err) // Promise {<resolved>: "I am rejected"}
-Promise.resolve('I am resolved').finally(res => res) // Promise {<resolved>: "I am resolved"}
+Promise.reject('I am rejected').catch(err => err)
+// Promise {<resolved>: "I am rejected"}
+
+Promise.resolve('I am resolved').finally(res => res)
+// Promise {<resolved>: "I am resolved"}
+
 Promise.resolve('I am resolved').finally(res => res).then(res => res) // 同上
 
 // race 用于只要参数数组的任一 Promise 状态改变就立即返回一个同参数中抛出状态一致的 Promise

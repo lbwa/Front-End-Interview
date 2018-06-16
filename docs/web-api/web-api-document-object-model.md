@@ -33,18 +33,26 @@ const p = document.querySelector('p')
 p.parentNode // 优先使用 parentNode，而非 parentElement
 
 // 子节点
-p.childNodes // 包含 Text 类型节点（标签之间空白算做文本节点）的类数组合集，即包含文本节点和元素即节点的合集。
-p.children // 只包含 Element 类型节点（即只有 HTML 元素）的类数组合集，即不包含文本节点的合集。
+// 包含 Text 类型节点（标签之间空白算做文本节点）的类数组合集，即包含文本节点和元素即节
+// 点的合集。
+p.childNodes
+
+// 只包含 Element 类型节点（即只有 HTML 元素）的类数组合集，即不包含文本节点的合集。
+p.children
 
 // 移除子节点
 p.removeChild(node)
 
 // 新增子节点
-p.appendChild(node) // 在 childNodes 最后插入新的节点作为 p 的子节点
-p.insertBefore(newNode, referenceNode) // 在 referenceNode 前插入 newNode，作为 p 的子节点
+// 在 childNodes 最后插入新的节点作为 p 的子节点
+p.appendChild(node)
+
+// 在 referenceNode 前插入 newNode，作为 p 的子节点
+p.insertBefore(newNode, referenceNode)
 
 // 克隆节点
-const newP = p.cloneNode(deep) // deep 为是否深克隆，即是否克隆子节点和 DOM0 级事件监听程序。最后得到 p 节点的一个副本。
+// deep 为是否深克隆，即是否克隆子节点和 DOM0 级事件监听程序。最后得到 p 节点的一个副本。
+const newP = p.cloneNode(deep)
 ```
 
 注：

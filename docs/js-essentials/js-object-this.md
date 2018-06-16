@@ -10,7 +10,9 @@ this 对象指向当前函数被调用时的执行上下文（`execution context
 const obj = {
   fn: () => this
 }
-obj.fn() === window // true，箭头函数中的 this 在定义时确认，它内部的 this 对象是借用的外部 this 对象
+
+// 箭头函数中的 this 在定义时确认，它内部的 this 对象是借用的外部 this 对象
+obj.fn() === window // true
 ```
 
 以下所指函数均为非箭头函数。

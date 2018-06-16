@@ -229,7 +229,9 @@ const ins = new Promise((resolve, reject) => {
 })
 
 // 4
-ins.then(() => console.log('I am from 1st ins.then()')).then(() => console.log('I am from 2nd ins.then()'))
+ins.then(() => console.log('I am from 1st ins.then()')).then(() => {
+  console.log('I am from 2nd ins.then()')
+})
 
 // 5
 console.log('I am from script bottom')

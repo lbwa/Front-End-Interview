@@ -67,7 +67,8 @@ formatData(newArr)
 /**
  * API define
  * @param {String} id 模块名
- * @param {Array<String>} dependence 当前定义的模块的依赖模块，数组中的每一项为模块地址的字符串 
+ * @param {Array<String>} dependence 当前定义的模块的依赖模块，数组中的每一项为模块
+*                                    地址的字符串 
  * @param {Function/Object} fn_Or_Object 回调函数的返回值或一个对象定义当前模块的值
  */
 define(id, dependence, function (m1, m2) {

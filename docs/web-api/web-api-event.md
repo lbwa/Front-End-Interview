@@ -9,19 +9,26 @@
  * @param {Element} el 事件处理程序所在元素
  * @param {String} type 事件类型
  * @param {Function} fn 事件处理程序
- * @param {String} [proxy=null] 被事件委托的元素，即 proxy 上的事件将冒泡到 el 上触发监听程序
+ * @param {String} [proxy=null] 被事件委托的元素，即 proxy 上的事件将冒泡到 el 上触
+ *                              发监听程序
  * @param {boolean} [capture=false] 是否于捕获阶段触发事件处理程序
  */
 function bindListener(el, type, fn, proxy = null, capture = false) {
-  // 长单词无法在代码压缩时被压缩，使用工厂函数 bindListener 代替每次 addEventListener 的调用
+  // 长单词无法在代码压缩时被压缩，使用工厂函数 bindListener 代替每次
+  // addEventListener 的调用
   el.addEventListener(type, function (evt) {
     const target = evt.target
 
-    // Element.matches(string) 如果元素 Element 被指定的选择器字符串 string 选择，该方法返回 true
-    // 即使用 matches 方法判断 target 是否是目标元素，而不是使用 evt.target.className === 'app' 等方法判断
+    /**
+     * 1. Element.matches(string) 如果元素 Element 被指定的选择器字符串 string 选择
+     *    ，该方法返回 true
+     * 2. 即使用 matches 方法判断 target 是否是目标元素，而不是使用
+     *    evt.target.className === 'app' 等方法判断
+     */
     if (proxy && target.matches(proxy)) {
 
-      // 指定 this 对象就相当于在 target 上调用 fn 监听程序，就相当于在 target 设置了监听程序
+      // 指定 this 对象就相当于在 target 上调用 fn 监听程序，就相当于在 target 设置了
+      // 监听程序
       fn.call(target, evt)
     } else {
       // target 为非委托（被代理）元素

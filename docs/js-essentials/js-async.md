@@ -160,7 +160,8 @@ function waitHandle () {
     // trigger，异步执行 task
     setTimeout(task, 1000)
 
-    // 不直接返回 deferred 对象是为了 开闭原则，保证外部不能调用 deferred.resolve 或 deferred.reject
+    // 不直接返回 deferred 对象是为了 开闭原则，保证外部不能调用 deferred.resolve
+    // 或 deferred.reject
     return deferred.promise() // 返回一个 promise 对象（标准中的 Promise 对象的前身）
   }
 
