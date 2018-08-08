@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lbwa/Front-End-Interview.git"
+    "url": "git+https://github.com/lbwa/front-end-interview.git"
   },
   "keywords": [
     "front-end"
@@ -17,9 +17,9 @@
   "author": "Bowen (lbwa)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lbwa/Front-End-Interview/issues"
+    "url": "https://github.com/lbwa/front-end-interview/issues"
   },
-  "homepage": "https://github.com/lbwa/Front-End-Interview#readme",
+  "homepage": "https://github.com/lbwa/front-end-interview#readme",
   "devDependencies": {
     "vuepress": "^0.10.0"
   }

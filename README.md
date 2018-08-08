@@ -1,12 +1,12 @@
 # Front-End Interview
 
-[![Build Status](https://travis-ci.org/lbwa/Front-End-Interview.svg?branch=master)](https://travis-ci.org/lbwa/Front-End-Interview)
+[![Build Status](https://travis-ci.org/lbwa/front-end-interview.svg?branch=master)](https://travis-ci.org/lbwa/front-end-interview)
 
 👉[在线浏览][online]
 
 本存储库主要是梳理和强化自己在前端学习历程的 `JavaScript` 基础知识。
 
-[online]:https://lbwa.github.io/Front-End-Interview/
+[online]:https://lbwa.github.io/front-end-interview/
 
 # 思考原则
 

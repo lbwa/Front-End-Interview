@@ -315,7 +315,7 @@
 
 [debounce-function]:https://github.com/lbwa/lbwa.github.io/issues/10
 
-[script-marco-task]:https://lbwa.github.io/Front-End-Interview/js-essentials/js-event-loops.html#任务源
+[script-marco-task]:https://lbwa.github.io/front-end-interview/js-essentials/js-event-loops.html#任务源
 
 - `setState` 的过程
 

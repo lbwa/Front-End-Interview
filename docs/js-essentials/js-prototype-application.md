@@ -6,7 +6,7 @@
 
 - 构造函数实例化时将生成一个**新对象**（章节 - [描述 new 的实例化过程][new-instance]）
 
-[new-instance]:https://lbwa.github.io/Front-End-Interview/js-essentials/js-prototype.html#描述-new-的实例化过程
+[new-instance]:https://lbwa.github.io/front-end-interview/js-essentials/js-prototype.html#描述-new-的实例化过程
 
 ## jQuery 和 zepto 中的原型应用
 
