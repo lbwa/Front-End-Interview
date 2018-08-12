@@ -30,13 +30,21 @@
 
 2. 当 `HTML` 中存在阻塞式脚本时，那么 `DOMContentLoaded` 一定是在 JS 脚本执行之后触发，而 JS 可能包含查询 `CSSOM` 的语句，那么阻塞式 JS 脚本必须阻塞至 `CSSOM` 构建完成之后执行（与 `DOM` 的暂停解析不同，`CSSOM` 的解析构建优先级高于阻塞式 JS 执行）。那么此时， `DOMContentLoaded` 触发的时机一定是在 `CSSOM` 完成构建，且阻塞式脚本已经执行完成时（[google web fundamentals]）。
 
-[google web fundamentals]:https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp#adding_javascript_and_css_into_the_mix
-
 ### 事件目标的区别
 
 `load` 事件在 `window` 和 `document` 对象上触发。
 
 `DOMContentLoaded` 事件在 `document` 对象上触发。
+
+### Reference
+
+- [google web fundamentals]
+
+- [再谈 DOMContentLoaded ]
+
+[google web fundamentals]:https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp#adding_javascript_and_css_into_the_mix
+
+[再谈 DOMContentLoaded ]:http://blog.51cto.com/zhoulujun/2118990
 
 ## 从输入 `url` 到得到 `HTML` 的详细过程
 
