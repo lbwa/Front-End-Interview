@@ -28,7 +28,7 @@
 
 在 `HTTP 1.0/1.1` 的情况下，`Chrome` 浏览器 [最大同域并发数] 为 `6`。若将部分依赖部署于其他子域时，可扩大当前页面的并发请求为 `N*6`。
 
-因为 `HTTP 2` 协议建立的单个 `TCP` 通道实现了并行请求（[多路复用链接][[最大同域并发数]]），而不再是原始的串行请求，那么此时最大同域并发数不再是 `6`（further reading: [HTTP 协议]）。
+因为 `HTTP 2` 协议建立的单个 `TCP` 通道实现了并行请求（[多路复用链接][最大同域并发数]），而不再是原始的串行请求，那么此时最大同域并发数不再是 `6`（further reading: [HTTP 协议]）。
 
 [最大同域并发数]:https://developers.google.com/web/tools/chrome-devtools/network-performance/understanding-resource-timing#_1
 
