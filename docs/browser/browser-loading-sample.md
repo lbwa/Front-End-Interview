@@ -16,6 +16,24 @@
 
     - 阻塞式脚本文件对于 `DOM` 与 `CSSOM` 是不同的优先级，这是浏览器的实现，即可理解为 `DOM < blocking JS` 和 `CSSOM > blocking JS`，但 `DOM` 与 `CSSOM` 二者之间不具有可比性。
 
+那么始终有：
+
+1. `CSS` 加载不阻塞 `DOM` 树的解析构建
+
+2. `CSS` 加载阻塞渲染树的解析构建，即阻塞渲染进程
+
+3. `CSS` 加载阻塞其后的阻塞式 JS 文件的执行。
+
+注：现代浏览器实现了并发预加载外部依赖，即当 `DOM` 树解析器被阻塞时，浏览器会识别该阻塞脚本的后续外部依赖进行预加载。但是，后续外部依赖的执行顺序依然是按照原始 `DOM` 树的结构执行。
+
+在 `HTTP 1.0/1.1` 的情况下，`Chrome` 浏览器 [最大同域并发数] 为 `6`。若将部分依赖部署于其他子域时，可扩大当前页面的并发请求为 `N*6`。
+
+因为 `HTTP 2` 协议建立的单个 `TCP` 通道实现了并行请求（[多路复用链接][[最大同域并发数]]），而不再是原始的串行请求，那么此时最大同域并发数不再是 `6`（further reading: [HTTP 协议]）。
+
+[最大同域并发数]:https://developers.google.com/web/tools/chrome-devtools/network-performance/understanding-resource-timing#_1
+
+[HTTP 协议]:https://set.sh/blog/writings/http-protocol#http-2
+
 ### Load 事件
 
 `load` 事件（触发时机：[HTML5 whatwg][whatwg-l] 和 [W3C 5.3 草案][w3c-draft-l] ）表示当前页面的 **全部** 依赖资源加载完时成才会触发事件，包括图片、视频等一切依赖。
@@ -26,7 +44,7 @@
 
 值得注意的是，当 `HTML` 中包含阻塞式 `JS` 脚本时，`DOMContentLoaded` 需要等到 `HTML` 中阻塞式脚本执行完成后触发，而阻塞式脚本执行的时机 ***一定*** 是在 `CSSOM` 构建完成之后。
 
-1. 当 `HTML` 中不存在阻塞式脚本时，那么 `DOMContentLoaded` 在 `DOM` tree 被解析构建完成时触发，而不用等待其他如 `CSS` 等依赖的下载解析完成。
+1. 当 `HTML` 中不存在阻塞式脚本时，那么 `DOMContentLoaded` 在 `DOM` 树被解析构建完成时触发，而不用等待其他如 `CSS` 等依赖的下载解析完成。
 
 2. 当 `HTML` 中存在阻塞式脚本时，那么 `DOMContentLoaded` 一定是在 JS 脚本执行之后触发，而 JS 可能包含查询 `CSSOM` 的语句，那么阻塞式 JS 脚本必须阻塞至 `CSSOM` 构建完成之后执行（与 `DOM` 的暂停解析不同，`CSSOM` 的解析构建优先级高于阻塞式 JS 执行）。那么此时， `DOMContentLoaded` 触发的时机一定是在 `CSSOM` 完成构建，且阻塞式脚本已经执行完成时（[google web fundamentals]）。
 
